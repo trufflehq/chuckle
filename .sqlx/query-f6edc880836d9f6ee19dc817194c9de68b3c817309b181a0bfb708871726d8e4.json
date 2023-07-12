@@ -1,0 +1,15 @@
+{
+    "db_name": "PostgreSQL",
+    "describe": {
+        "columns": [],
+        "nullable": [],
+        "parameters": {
+            "Left": [
+                "Text",
+                "Text"
+            ]
+        }
+    },
+    "hash": "f6edc880836d9f6ee19dc817194c9de68b3c817309b181a0bfb708871726d8e4",
+    "query": "update guild_settings set default_repository = $1 where guild_id = $2"
+}

@@ -1,0 +1,26 @@
+[package]
+name = "chuckle-http"
+version = "0.1.0"
+edition = "2021"
+
+
+[dependencies]
+# core dependencies
+chuckle-github = { workspace = true }
+chuckle-interactions = { workspace = true }
+chuckle-util = { workspace = true }
+
+anyhow = { workspace = true }
+axum = { workspace = true }
+github-webhooks = { git = "https://github.com/trufflehq/github-webhooks.git", features = ["axum"] }
+once_cell = { workspace = true }
+ring = "0.16"
+serde = { workspace = true }
+serde_json = { workspace = true }
+sqlx = { workspace = true }
+thiserror = "1.0.43"
+tower = "0.4"
+tower-http = { version = "0.4", features = ["trace"] }
+tracing = { workspace = true }
+twilight-model = { workspace = true }
+twilight-util = { workspace = true }

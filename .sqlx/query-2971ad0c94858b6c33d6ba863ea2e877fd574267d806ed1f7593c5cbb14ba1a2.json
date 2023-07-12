@@ -1,0 +1,27 @@
+{
+    "db_name": "PostgreSQL",
+    "describe": {
+        "columns": [
+            {
+                "name": "id",
+                "ordinal": 0,
+                "type_info": "Uuid"
+            }
+        ],
+        "nullable": [
+            false
+        ],
+        "parameters": {
+            "Left": [
+                "Int8",
+                "Int8",
+                "Int8",
+                "Int8",
+                "Int8",
+                "Timestamptz"
+            ]
+        }
+    },
+    "hash": "2971ad0c94858b6c33d6ba863ea2e877fd574267d806ed1f7593c5cbb14ba1a2",
+    "query": "insert into notifications (author_id, user_id, guild_id, channel_id, message_id, notify_at) values ($1, $2, $3, $4, $5, $6) returning id"
+}

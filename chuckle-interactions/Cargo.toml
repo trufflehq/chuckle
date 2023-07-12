@@ -1,0 +1,29 @@
+[package]
+name = "chuckle-interactions"
+version = "0.1.0"
+edition = "2021"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = { workspace = true }
+chrono = { workspace = true }
+chuckle-util = { workspace = true }
+hex = { workspace = true }
+ms = "0.1.1"
+once_cell = { workspace = true }
+reqwest = { workspace = true }
+serde_json = { workspace = true }
+sqlx = { workspace = true }
+time = { workspace = true }
+tracing = { workspace = true }
+twilight-model = { workspace = true }
+twilight-util = { workspace = true }
+uuid = { workspace = true }
+zephyrus = { workspace = true }
+
+# lockfile deps
+tokio = { workspace = true, optional = true }
+
+[features]
+default = ["lockfile"]
+lockfile = ["tokio"]

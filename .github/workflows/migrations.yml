@@ -1,0 +1,48 @@
+name: Database Migrations
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'migrations/**'
+  workflow_dispatch:
+
+jobs:
+  gcr:
+    name: Apply Database Migrations
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Connect to Cloud SQL
+        uses: ahmadnassri/action-google-cloud-sql-proxy@v1
+        with:
+          key: ${{ secrets.CLOUD_SQL_JSON_KEY }}
+          connection: ${{ secrets.CLOUD_SQL_CONNECTION }}
+          port: 5432
+
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-check-${{ matrix.runtime }}-${{ hashFiles('**/Cargo.lock') }}
+
+      - uses: actions-rs/cargo@v1
+        name: Install sqlx-cli
+        with:
+          command: install
+          args: sqlx-cli@0.7.0-alpha.3 --no-default-features --features native-tls,postgres
+
+      - name: Apply Migrations
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: sqlx migrate run

@@ -1,0 +1,18 @@
+[package]
+name = "chuckle"
+version = "0.1.0"
+edition = "2021"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+chuckle-gateway = { workspace = true }
+chuckle-github = { workspace = true }
+chuckle-http = { workspace = true }
+chuckle-interactions = { workspace = true }
+chuckle-jobs = { workspace = true }
+chuckle-util = { workspace = true }
+
+anyhow = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { version = "0.3", features = ["fmt", "env-filter"] }

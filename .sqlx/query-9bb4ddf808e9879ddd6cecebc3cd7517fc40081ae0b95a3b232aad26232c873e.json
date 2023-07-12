@@ -1,0 +1,25 @@
+{
+    "db_name": "PostgreSQL",
+    "describe": {
+        "columns": [
+            {
+                "name": "id",
+                "ordinal": 0,
+                "type_info": "Uuid"
+            }
+        ],
+        "nullable": [
+            false
+        ],
+        "parameters": {
+            "Left": [
+                "Int4",
+                "Text",
+                "Text",
+                "Text"
+            ]
+        }
+    },
+    "hash": "9bb4ddf808e9879ddd6cecebc3cd7517fc40081ae0b95a3b232aad26232c873e",
+    "query": "insert into pr_review_output (pr_number, repo_owner, repo, thread_id) values ($1, $2, $3, $4) returning id"
+}

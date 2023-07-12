@@ -1,0 +1,31 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  gcr:
+    name: Deploy Image to GCR
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Generate build ID
+        id: build_id
+        run: |
+          branch=${GITHUB_REF##*/}
+          sha=${GITHUB_SHA::8}
+          ts=$(date +%s)
+          echo "BUILD_ID=${branch}-${sha}-${ts}" >> $GITHUB_OUTPUT
+
+      - name: Build And Deploy to GCR
+        uses: whoan/docker-build-with-cache-action@v6
+        with:
+          username: _json_key
+          password: '${{ secrets.GCR_JSON_KEY }}'
+          registry: gcr.io
+          dockerfile: ./chuckle/Dockerfile
+          image_name: chuckle
+          image_tag: latest,${{ steps.build_id.outputs.BUILD_ID }}

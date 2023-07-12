@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: 'admin'
+      POSTGRES_PASSWORD: 'oafishcaveman'
+      POSTGRES_DB: 'chuckle'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    ports:
+      - 127.0.0.1:5432:5432
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U admin -d chuckle']
+      interval: 10s
+      timeout: 5s
+
+  chuckle:
+    build:
+      context: .
+      dockerfile: ./chuckle/Dockerfile
+    environment:
+      - DATABASE_URL
+      - ENV
+      - DISCORD_APPLICATION_ID
+      - DISCORD_TOKEN
+      - RUST_LOG
+      - FORUM_LOG_CHANNEL
+      - GITHUB_WEBHOOK_SECRET
+      - PORT
+      - GITHUB_ACCESS_TOKEN
+
+volumes:
+  postgres-data:

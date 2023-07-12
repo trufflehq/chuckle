@@ -1,0 +1,47 @@
+{
+    "db_name": "PostgreSQL",
+    "describe": {
+        "columns": [
+            {
+                "name": "id",
+                "ordinal": 0,
+                "type_info": "Uuid"
+            },
+            {
+                "name": "guild_id",
+                "ordinal": 1,
+                "type_info": "Text"
+            },
+            {
+                "name": "user_id",
+                "ordinal": 2,
+                "type_info": "Text"
+            },
+            {
+                "name": "role_id",
+                "ordinal": 3,
+                "type_info": "Text"
+            },
+            {
+                "name": "created_at",
+                "ordinal": 4,
+                "type_info": "Timestamptz"
+            }
+        ],
+        "nullable": [
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "parameters": {
+            "Left": [
+                "Text",
+                "Text"
+            ]
+        }
+    },
+    "hash": "19894c74522a8a43509ed5214f56e48324f08f28776c9980792233c4cf1ca856",
+    "query": "SELECT * FROM \"hexil\" WHERE guild_id = $1 and user_id = $2"
+}

@@ -1,0 +1,8 @@
+export DATABASE_URL="postgres://admin:oafishcaveman@localhost:5432/chuckle"
+export ENV=development
+export DISCORD_APPLICATION_ID=
+export DISCORD_TOKEN=
+export RUST_LOG=debug,hyper=info,tower_http=info,rustls=info
+export GITHUB_WEBHOOK_SECRET=
+# for getting repo files
+export GITHUB_ACCESS_TOKEN=

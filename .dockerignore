@@ -1,0 +1,10 @@
+.vscode
+docker
+target
+.dockerignore
+.gitignore
+build.rs
+commands.lock.json
+deploy-commands.sh
+README.md
+y.*

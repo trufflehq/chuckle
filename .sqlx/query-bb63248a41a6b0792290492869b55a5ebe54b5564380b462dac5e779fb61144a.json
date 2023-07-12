@@ -1,0 +1,14 @@
+{
+    "db_name": "PostgreSQL",
+    "describe": {
+        "columns": [],
+        "nullable": [],
+        "parameters": {
+            "Left": [
+                "Text"
+            ]
+        }
+    },
+    "hash": "bb63248a41a6b0792290492869b55a5ebe54b5564380b462dac5e779fb61144a",
+    "query": "update guild_settings set forum_log_channel_id = null where guild_id = $1"
+}

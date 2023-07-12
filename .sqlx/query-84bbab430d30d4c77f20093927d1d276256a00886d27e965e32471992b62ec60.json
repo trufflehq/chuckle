@@ -1,0 +1,22 @@
+{
+    "db_name": "PostgreSQL",
+    "describe": {
+        "columns": [
+            {
+                "name": "meta",
+                "ordinal": 0,
+                "type_info": "Jsonb"
+            }
+        ],
+        "nullable": [
+            true
+        ],
+        "parameters": {
+            "Left": [
+                "Uuid"
+            ]
+        }
+    },
+    "hash": "84bbab430d30d4c77f20093927d1d276256a00886d27e965e32471992b62ec60",
+    "query": "select meta from modal where id = $1"
+}

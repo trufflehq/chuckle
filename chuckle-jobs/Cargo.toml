@@ -1,0 +1,15 @@
+[package]
+name = "chuckle-jobs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# core dependencies
+chuckle-util = { workspace = true }
+
+anyhow = { workspace = true }
+clokwerk = "0.4"
+sqlx = { workspace = true }
+tokio = { workspace = true, features = ["time", "rt"] }
+tracing = { workspace = true }
+twilight-model = { workspace = true }

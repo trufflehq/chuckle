@@ -1,0 +1,24 @@
+name: Deploy Commands
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'chuckle-interactions/commands.lock.json'
+      - '.github/workflows/commands.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy Updated Global Commands
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: PUT Global Commands
+        run: |
+          curl -X PUT https://discord.com/api/v10/applications/${{ secrets.DISCORD_APPLICATION_ID }}/commands \
+            -H "Authorization: Bot ${{ secrets.DISCORD_TOKEN }}" \
+            -H "content-type: application/json" \
+            -d @./chuckle-interactions/commands.lock.json

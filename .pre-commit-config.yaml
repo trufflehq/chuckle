@@ -1,0 +1,29 @@
+repos:
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: f8d8c45220230434bd7440d85a7f64c67bcdb952
+      hooks:
+          - id: trailing-whitespace
+          - id: end-of-file-fixer
+          - id: check-toml
+          - id: check-yaml
+          - id: pretty-format-json
+            args: ["--indent=4", "--autofix"]
+          - id: check-added-large-files
+
+    - repo: https://github.com/doublify/pre-commit-rust
+      rev: v1.0
+      hooks:
+          - id: fmt
+          - id: cargo-check
+          - id: clippy
+
+    # - repo: local
+    #   hooks:
+    #     - id: build-commands-lockfile
+    #       name: Build commands.lock.json
+    #       description: Build the commands.lock.json file of our Discord slash commands
+    #       entry: cargo run
+    #       args: ["--bin", "chuckle-interactions"]
+    #       language: rust
+    #       types: [json]
+    #       stages: [commit]
