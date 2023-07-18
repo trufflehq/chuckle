@@ -32,7 +32,7 @@ reqwest = { version = "0.11", features = ["json"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["preserve_order"] }
 tokio = { version = "1", features = ["macros", "rt-multi-thread", "time"] }
-sqlx = { version = "0.7.0", features = [ "runtime-tokio-rustls", "postgres", "uuid", "time" ] }
+sqlx = { version = "0.7.1", features = [ "runtime-tokio-rustls", "postgres", "uuid", "time" ] }
 time = "0.3"
 tracing = "0.1"
 twilight-cache-inmemory = { version = "0.15", features = ["permission-calculator"] }
