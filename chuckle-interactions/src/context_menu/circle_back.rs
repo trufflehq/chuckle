@@ -1,66 +1,70 @@
 use chuckle_util::ChuckleState;
-use twilight_model::{
-	application::interaction::{application_command::CommandData, Interaction},
-	channel::message::{
-		component::{ActionRow, TextInput, TextInputStyle},
-		Component,
-	},
-	http::interaction::{InteractionResponse, InteractionResponseType},
-};
-use twilight_util::builder::InteractionResponseDataBuilder;
+use ms::*;
+use time::{Duration, OffsetDateTime};
+use twilight_model::application::interaction::InteractionData;
+use zephyrus::prelude::*;
 
-pub async fn handle(
-	state: ChuckleState,
-	interaction: Interaction,
-	command: Box<CommandData>,
-) -> anyhow::Result<()> {
-	let (message_id, message) = command
+use crate::commands::{text_response, user_from_interaction};
+
+#[derive(Modal, Debug)]
+#[modal(title = "Circle Back")]
+struct CircleBackModal {
+	#[modal(
+		label = "How long until you'd like to be notified?",
+		placeholder = "20m, 1hr, 3hr, 12hr, 2d, etc.",
+		min_length = 2,
+		max_length = 10
+	)]
+	til_notify: String,
+}
+
+#[command(message, name = "Circle Back")]
+#[description = "Circle back to this message in a given amount of time"]
+#[only_guilds]
+pub async fn circle_back(ctx: &SlashContext<ChuckleState>) -> DefaultCommandResult {
+	let data = match &ctx.interaction.data {
+		Some(InteractionData::ApplicationCommand(data)) => data,
+		_ => return Ok(()),
+	};
+	let (message_id, message) = data
+		.clone()
 		.resolved
 		.unwrap()
 		.messages
 		.into_iter()
 		.next()
 		.unwrap();
-	let meta = serde_json::json!({ "message_id": message_id.to_string(), "author_id": message.author.id.to_string() });
+	let author_id = message.author.id;
 
-	let id = sqlx::query_scalar!(
-		"insert into modal (command, meta) values ($1, $2) returning id",
-		"circle_back",
-		meta
-	)
-	.fetch_one(&state.db)
-	.await?;
+	let modal_waiter = ctx.create_modal::<CircleBackModal>().await?;
+	let output = modal_waiter.await?;
 
-	let components = vec![Component::ActionRow(ActionRow {
-		components: Vec::from([Component::TextInput(TextInput {
-			custom_id: id.to_string(),
-			label: "How long until you'd like to be notified?".to_string(),
-			required: Some(true),
-			style: TextInputStyle::Short,
-			placeholder: Some("20m, 1hr, 3hr, 12hr, 2d, etc.".to_string()),
-			max_length: Some(10),
-			min_length: Some(1),
-			value: None,
-		})]),
-	})];
-
-	let _ = state
-		.interactions_client()
-		.create_response(
-			interaction.id,
-			&interaction.token,
-			&InteractionResponse {
-				kind: InteractionResponseType::Modal,
-				data: Some(
-					InteractionResponseDataBuilder::new()
-						.title("Circle back to this message")
-						.components(components)
-						.custom_id(id.to_string())
-						.build(),
-				),
-			},
+	let time = if let Some(time) = ms!(&output.til_notify) {
+		time
+	} else {
+		return text_response(
+			ctx,
+			"The duration you provided was invalid. Please try again with something like [this](https://github.com/nesso99/ms-rust/blob/5a579c9f5b45851086ace2bfa506f541e49b3bbd/tests/main.rs#L6-L22)".to_string(),
+			false,
 		)
 		.await;
+	};
 
-	Ok(())
+	let notify_at = OffsetDateTime::now_utc() + Duration::milliseconds(time as i64);
+	let _ = sqlx::query!(
+        "insert into notifications (author_id, user_id, guild_id, channel_id, message_id, notify_at) values ($1, $2, $3, $4, $5, $6) returning id",
+        author_id.get() as i64,
+        user_from_interaction(&ctx.interaction).id.get() as i64,
+        ctx.interaction.guild_id.unwrap().get() as i64,
+        ctx.interaction.channel.clone().unwrap().id.get() as i64,
+        message_id.get() as i64,
+        notify_at
+    ).fetch_one(&ctx.data.db).await?;
+
+	text_response(
+		ctx,
+		format!("Sounds good! I'll remind you in {}.", ms!(time, true)),
+		true,
+	)
+	.await
 }

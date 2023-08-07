@@ -336,6 +336,7 @@ dependencies = [
  "time 0.3.21",
  "tokio",
  "tracing",
+ "twilight-cache-inmemory",
  "twilight-model",
  "twilight-util",
  "uuid",
@@ -369,6 +370,7 @@ dependencies = [
  "twilight-http",
  "twilight-model",
  "uuid",
+ "zephyrus",
 ]
 
 [[package]]
@@ -453,6 +455,41 @@ checksum = "1bfb12502f3fc46cca1bb51ac28df9d618d813cdc3d2f25b9fe775a34af26bb3"
 dependencies = [
  "generic-array",
  "typenum",
+]
+
+[[package]]
+name = "darling"
+version = "0.20.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0209d94da627ab5605dcccf08bb18afa5009cfbef48d8a8b7d7bdbc79be25c5e"
+dependencies = [
+ "darling_core",
+ "darling_macro",
+]
+
+[[package]]
+name = "darling_core"
+version = "0.20.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "177e3443818124b357d8e76f53be906d60937f0d3a90773a664fa63fa253e621"
+dependencies = [
+ "fnv",
+ "ident_case",
+ "proc-macro2",
+ "quote",
+ "strsim",
+ "syn 2.0.25",
+]
+
+[[package]]
+name = "darling_macro"
+version = "0.20.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "836a9bbc7ad63342d6d6e7b815ccab164bc77a2d95d84bc3117a8c0d5c98e2d5"
+dependencies = [
+ "darling_core",
+ "quote",
+ "syn 2.0.25",
 ]
 
 [[package]]
@@ -973,6 +1010,12 @@ checksum = "f31827a206f56af32e590ba56d5d2d085f558508192593743f16b2306495269f"
 dependencies = [
  "cc",
 ]
+
+[[package]]
+name = "ident_case"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b9e0384b61958566e926dc50660321d12159025e767c18e043daf26b70104c39"
 
 [[package]]
 name = "idna"
@@ -2152,6 +2195,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "strsim"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "73473c0e59e6d5812c5dfe2a064a6444949f089e20eec9a2e5506596494e4623"
+
+[[package]]
 name = "subtle"
 version = "2.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3004,9 +3053,8 @@ dependencies = [
 
 [[package]]
 name = "zephyrus"
-version = "0.9.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "70d49ad1b664975194f96870c768947a2a916897d39af23841cacceacf0ae88c"
+version = "0.10.0"
+source = "git+https://github.com/carterhimmel/zephyrus?branch=master#aa4f9a8130492b1c4d2a281d31d9dd43b8fb7eaa"
 dependencies = [
  "async-trait",
  "parking_lot",
@@ -3014,18 +3062,20 @@ dependencies = [
  "tracing",
  "twilight-http",
  "twilight-model",
+ "twilight-util",
+ "twilight-validate",
  "zephyrus-macros",
 ]
 
 [[package]]
 name = "zephyrus-macros"
-version = "0.9.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c1db23587fcfe3d166cb25bf06e036bcc25e392a7e08e9e0b46e079c728aacee"
+version = "0.10.0"
+source = "git+https://github.com/carterhimmel/zephyrus?branch=master#aa4f9a8130492b1c4d2a281d31d9dd43b8fb7eaa"
 dependencies = [
+ "darling",
  "proc-macro2",
  "quote",
- "syn 1.0.109",
+ "syn 2.0.25",
 ]
 
 [[package]]

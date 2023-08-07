@@ -11,14 +11,20 @@ const BOT_EVENTS: EventTypeFlags = EventTypeFlags::from_bits_truncate(
 		| EventTypeFlags::GUILD_CREATE.bits()
 		| EventTypeFlags::GUILD_DELETE.bits()
 		| EventTypeFlags::THREAD_CREATE.bits()
+		| EventTypeFlags::CHANNEL_CREATE.bits()
+		| EventTypeFlags::CHANNEL_UPDATE.bits()
 		| EventTypeFlags::CHANNEL_DELETE.bits()
-		| EventTypeFlags::INTERACTION_CREATE.bits(),
+		| EventTypeFlags::INTERACTION_CREATE.bits()
+		| EventTypeFlags::GUILD_VOICE_STATES.bits(),
 );
 
 pub async fn create_gateway(state: ChuckleState, framework: ChuckleFramework) -> Result<()> {
-	let config = Config::builder(CONFIG.discord_token.clone(), Intents::GUILDS)
-		.event_types(BOT_EVENTS)
-		.build();
+	let config = Config::builder(
+		CONFIG.discord_token.clone(),
+		Intents::GUILDS | Intents::GUILD_VOICE_STATES,
+	)
+	.event_types(BOT_EVENTS)
+	.build();
 	let mut shard = Shard::with_config(ShardId::ONE, config);
 
 	loop {
@@ -50,9 +56,7 @@ pub async fn handle_event(
 			Ok(tracing::debug!("Shard {shard_id} heartbeat: {heart}"))
 		}
 		Event::ThreadCreate(event) => thread_create::handle(state, event).await,
-		Event::InteractionCreate(event) => {
-			interaction_create::handle(state, framework, event).await
-		}
+		Event::InteractionCreate(event) => interaction_create::handle(framework, event).await,
 		Event::Ready(_) => Ok(tracing::info!("Shard {shard_id} connected; client ready!")),
 		Event::GatewayReconnect => Ok(tracing::info! {
 			target: "gateway_reconnect",

@@ -7,7 +7,10 @@ use twilight_model::{
 };
 use zephyrus::{framework::DefaultError, prelude::*};
 
+// groups
+pub mod breakout_rooms;
 pub mod config;
+
 mod hexil;
 mod link_github;
 mod ping;
@@ -21,13 +24,6 @@ pub fn user_from_interaction(interaction: &Interaction) -> User {
 	}
 
 	interaction.user.clone().unwrap()
-}
-
-#[check]
-/// Check if the command has been executed inside a guild.
-pub async fn only_guilds(ctx: &SlashContext<ChuckleState>) -> Result<bool, DefaultError> {
-	// Only pass the check if the command has been executed inside a guild
-	Ok(ctx.interaction.guild_id.is_some())
 }
 
 #[error_handler]
@@ -46,6 +42,20 @@ async fn handle_generic_error(ctx: &SlashContext<ChuckleState>, err: DefaultErro
 		true,
 	)
 	.await;
+}
+
+/// Shorthand for editing the response to an interaction after being deferred.
+pub async fn edit_response(
+	ctx: &SlashContext<'_, ChuckleState>,
+	text: String,
+) -> DefaultCommandResult {
+	ctx.interaction_client
+		.update_response(&ctx.interaction.token)
+		.content(Some(&text))
+		.unwrap()
+		.await?;
+
+	Ok(())
 }
 
 /// Shorthand to creating a text response to an interaction.

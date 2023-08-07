@@ -1,8 +1,9 @@
 use chuckle_util::ChuckleState;
 use zephyrus::prelude::*;
 
-use super::{handle_generic_error, only_guilds, text_response, user_from_interaction};
+use super::{handle_generic_error, text_response, user_from_interaction};
 
+#[tracing::instrument]
 async fn fetch_user_id(username: &String) -> anyhow::Result<i32> {
 	let url = format!("https://api.github.com/users/{}", username);
 	let resp = reqwest::Client::new()
@@ -17,9 +18,10 @@ async fn fetch_user_id(username: &String) -> anyhow::Result<i32> {
 	Ok(user_id)
 }
 
+#[tracing::instrument(skip(ctx))]
 #[command("link-github")]
 #[description = "Set a custom role color."]
-#[checks(only_guilds)]
+#[only_guilds]
 #[error_handler(handle_generic_error)]
 pub async fn link_github(
 	ctx: &SlashContext<ChuckleState>,
