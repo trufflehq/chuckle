@@ -1,11 +1,12 @@
 use chuckle_util::{db::get_settings, ChuckleState};
 use zephyrus::prelude::*;
 
-use super::{handle_generic_error, only_guilds, text_response};
+use super::{handle_generic_error, text_response};
 
+#[tracing::instrument(skip(ctx))]
 #[command("pr-comments")]
 #[description = "Get the comments for a PR."]
-#[checks(only_guilds)]
+#[only_guilds]
 #[error_handler(handle_generic_error)]
 pub async fn pr_comments(
 	ctx: &SlashContext<ChuckleState>,

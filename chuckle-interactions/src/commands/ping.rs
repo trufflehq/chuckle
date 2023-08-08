@@ -2,6 +2,7 @@ use super::{handle_generic_error, text_response};
 use chuckle_util::ChuckleState;
 use zephyrus::prelude::*;
 
+#[tracing::instrument(skip(ctx))]
 #[command]
 #[description = "Ping the bot."]
 #[error_handler(handle_generic_error)]

@@ -1,0 +1,14 @@
+{
+    "db_name": "PostgreSQL",
+    "describe": {
+        "columns": [],
+        "nullable": [],
+        "parameters": {
+            "Left": [
+                "Text"
+            ]
+        }
+    },
+    "hash": "5a58be59c5bc784eddb02472c0e0b84c27423b93f8adb038845a2a7ba1a7c70b",
+    "query": "update guild_settings set breakout_rooms_category_id = null where guild_id = $1"
+}

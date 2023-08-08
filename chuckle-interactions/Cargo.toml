@@ -16,6 +16,7 @@ serde_json = { workspace = true }
 sqlx = { workspace = true }
 time = { workspace = true }
 tracing = { workspace = true }
+twilight-cache-inmemory = { workspace = true }
 twilight-model = { workspace = true }
 twilight-util = { workspace = true }
 uuid = { workspace = true }

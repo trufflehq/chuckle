@@ -7,6 +7,7 @@ edition = "2021"
 [dependencies]
 anyhow = { workspace = true }
 once_cell = { workspace = true }
+zephyrus = { workspace = true }
 
 # config
 envy = { version = "0.4.2", optional = true }

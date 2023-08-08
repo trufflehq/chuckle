@@ -15,7 +15,7 @@ script = '''
     cargo install cargo-spellcheck
 
     echo # things required by sqlx
-    cargo install sqlx-cli@0.7.0-alpha.3 --no-default-features --features native-tls,postgres
+    cargo install sqlx-cli@0.7.2 --no-default-features --features native-tls,postgres
 
     echo # things required by `cargo make sort-deps`
     cargo install cargo-sort

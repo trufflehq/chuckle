@@ -6,6 +6,7 @@ use uuid::Uuid;
 pub struct GuildSettingsRow {
 	pub id: Uuid,
 	pub guild_id: String,
+	pub breakout_rooms_category_id: Option<String>,
 	pub forum_log_channel_id: Option<String>,
 	pub default_repository: Option<String>,
 	pub default_repository_owner: Option<String>,

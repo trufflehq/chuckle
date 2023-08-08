@@ -1,17 +1,10 @@
-use chuckle_interactions::context_menu;
-use chuckle_interactions::modals;
 use chuckle_interactions::ChuckleFramework;
-use chuckle_util::ChuckleState;
 use twilight_model::{
-	application::{
-		command::CommandType,
-		interaction::{InteractionData, InteractionType},
-	},
+	application::interaction::{InteractionData, InteractionType},
 	gateway::payload::incoming::InteractionCreate,
 };
 
 pub async fn handle(
-	state: ChuckleState,
 	framework: ChuckleFramework,
 	event: Box<InteractionCreate>,
 ) -> anyhow::Result<()> {
@@ -26,27 +19,16 @@ pub async fn handle(
 		InteractionType::ApplicationCommand => match interaction.clone().data {
 			Some(InteractionData::ApplicationCommand(data)) => {
 				tracing::info!("received application command: {:?}", data.kind);
-				match data.kind {
-					CommandType::ChatInput => {
-						tracing::info!("Received a command: {:?}", data.name);
-						framework.process(interaction).await;
+				framework.process(interaction).await;
 
-						Ok(())
-					}
-					CommandType::Message => context_menu::handle(state, interaction, data).await,
-					_ => Ok(()),
-				}
+				Ok(())
 			}
 			_ => Ok(()),
 		},
 		InteractionType::ModalSubmit => {
-			let data = match interaction.data.clone() {
-				Some(InteractionData::ModalSubmit(data)) => Some(data),
-				_ => None,
-			}
-			.expect("`InteractionType::ModalSubmit` has data");
+			framework.process(interaction).await;
 
-			modals::handle(state, interaction, data).await
+			Ok(())
 		}
 		InteractionType::MessageComponent => unimplemented!(),
 		InteractionType::ApplicationCommandAutocomplete => unimplemented!(""),

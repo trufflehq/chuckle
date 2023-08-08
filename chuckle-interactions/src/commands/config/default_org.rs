@@ -1,11 +1,12 @@
 use chuckle_util::{db::get_settings, ChuckleState};
 use zephyrus::prelude::*;
 
-use crate::commands::{handle_generic_error, only_guilds, text_response};
+use crate::commands::{handle_generic_error, text_response};
 
+#[tracing::instrument(skip(ctx))]
 #[command]
 #[description = "List the default organization for PR Comments"]
-#[checks(only_guilds)]
+#[only_guilds]
 #[error_handler(handle_generic_error)]
 pub async fn list(ctx: &SlashContext<ChuckleState>) -> DefaultCommandResult {
 	let settings = get_settings(ctx.data, ctx.interaction.guild_id.unwrap()).await?;
@@ -30,9 +31,10 @@ pub async fn list(ctx: &SlashContext<ChuckleState>) -> DefaultCommandResult {
 	}
 }
 
+#[tracing::instrument(skip(ctx))]
 #[command]
 #[description = "Set the default organization for PR Comments"]
-#[checks(only_guilds)]
+#[only_guilds]
 #[required_permissions(MANAGE_GUILD)]
 #[error_handler(handle_generic_error)]
 pub async fn set(
@@ -64,9 +66,10 @@ pub async fn set(
 	text_response(ctx, content, ephemeral).await
 }
 
+#[tracing::instrument(skip(ctx))]
 #[command]
 #[description = "Unset the default GitHub organization for PR Comments"]
-#[checks(only_guilds)]
+#[only_guilds]
 #[error_handler(handle_generic_error)]
 pub async fn unset(ctx: &SlashContext<ChuckleState>) -> DefaultCommandResult {
 	let res = sqlx::query!(

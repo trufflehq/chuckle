@@ -6,11 +6,12 @@ use twilight_model::{
 };
 use zephyrus::prelude::*;
 
-use super::{handle_generic_error, only_guilds, text_response, user_from_interaction};
+use super::{handle_generic_error, text_response, user_from_interaction};
 
+#[tracing::instrument(skip(ctx))]
 #[command]
 #[description = "Set a custom role color."]
-#[checks(only_guilds)]
+#[only_guilds]
 #[error_handler(handle_generic_error)]
 pub async fn hexil(
 	ctx: &SlashContext<ChuckleState>,
