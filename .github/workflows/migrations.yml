@@ -31,7 +31,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
 
       - name: Install sqlx-cli
-        run: cargo install sqlx-cli@0.7.2 --no-default-features --features native-tls,postgres
+        run: cargo install sqlx-cli@0.7.1 --no-default-features --features native-tls,postgres
 
       - name: Connect to Cloud SQL
         uses: ahmadnassri/action-google-cloud-sql-proxy@v1
