@@ -38,7 +38,7 @@ pub async fn hexil(
 	let guild_id = ctx.interaction.guild_id.unwrap();
 
 	let existing = sqlx::query!(
-		r#"SELECT * FROM "hexil" WHERE guild_id = $1 and user_id = $2"#,
+		r#"select * from hexil where guild_id = $1 and user_id = $2"#,
 		guild_id.to_string(),
 		user.id.to_string()
 	)
@@ -48,11 +48,13 @@ pub async fn hexil(
 	if existing.is_some() {
 		let role_id = Id::<RoleMarker>::from_str(&existing.unwrap().role_id).unwrap();
 		// change the color of the role
-		let _ = ctx
-			.http_client()
+		ctx.http_client()
 			.update_role(guild_id, role_id)
 			.color(Some(hex_int))
-			.name(Some(&user.name));
+			.name(Some(&user.name))
+			.await?
+			.model()
+			.await?;
 	} else {
 		// create role then create database entry
 		let role = ctx

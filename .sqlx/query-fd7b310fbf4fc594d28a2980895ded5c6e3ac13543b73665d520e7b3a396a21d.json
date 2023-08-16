@@ -42,6 +42,6 @@
             ]
         }
     },
-    "hash": "19894c74522a8a43509ed5214f56e48324f08f28776c9980792233c4cf1ca856",
-    "query": "SELECT * FROM \"hexil\" WHERE guild_id = $1 and user_id = $2"
+    "hash": "fd7b310fbf4fc594d28a2980895ded5c6e3ac13543b73665d520e7b3a396a21d",
+    "query": "select * from hexil where guild_id = $1 and user_id = $2"
 }
