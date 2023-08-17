@@ -75,6 +75,11 @@ pub async fn hexil(
 		)
 		.execute(&ctx.data.db)
 		.await?;
+
+		// add role to user
+		ctx.http_client()
+			.add_guild_member_role(guild_id, user.id, role.id)
+			.await?;
 	}
 
 	text_response(
