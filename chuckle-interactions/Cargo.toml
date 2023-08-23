@@ -24,6 +24,7 @@ zephyrus = { workspace = true }
 
 # lockfile deps
 tokio = { workspace = true, optional = true }
+rand = "0.8.5"
 
 [features]
 default = ["lockfile"]

@@ -5,6 +5,7 @@ use chuckle_util::{
 	db::get_settings,
 	ChuckleState,
 };
+use rand::seq::SliceRandom;
 use twilight_model::{channel::Channel, id::Id};
 use zephyrus::{prelude::*, twilight_exports::ChannelMarker};
 
@@ -27,7 +28,7 @@ pub async fn create(
 		return text_response(ctx, "No breakout rooms category set.".to_string(), true).await;
 	}
 
-	let voice_states = ctx
+	let mut voice_states = ctx
 		.data
 		.cache
 		.voice_channel_states(channel)
@@ -45,6 +46,7 @@ pub async fn create(
 		)
 		.await;
 	}
+	voice_states.shuffle(&mut rand::thread_rng());
 
 	let rooms = chunkify(voice_states, size.into(), remainder_strategy).chunks;
 

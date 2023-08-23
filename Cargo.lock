@@ -331,6 +331,7 @@ dependencies = [
  "hex",
  "ms",
  "once_cell",
+ "rand",
  "reqwest",
  "serde_json",
  "sqlx",
