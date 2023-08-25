@@ -12,7 +12,7 @@ env:
 jobs:
   deploy:
     name: Deploy Image to GCR
-    runs-on: chuckle-runner
+    runs-on: chortle
     steps:
       - uses: actions/checkout@v3
 

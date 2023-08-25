@@ -14,14 +14,12 @@ concurrency:
 jobs:
   check:
     name: Lint, Format, and Build
-    runs-on: chuckle-runner
+    runs-on: chortle
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v3
 
-      -
-        name: Cache Cargo
+      - name: Cache Cargo
         uses: actions/cache@v3
         with:
           path: |
@@ -32,22 +30,17 @@ jobs:
             target/
           key: cargo-${{ runner.os }}-${{ hashFiles('**/Cargo.lock') }}
 
-      -
-        name: Setup Problem Matchers
+      - name: Setup Problem Matchers
         uses: r7kamura/rust-problem-matchers@v1
 
-      -
-        name: Setup Rust
+      - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
 
-      -
-        name: Run Formatter
+      - name: Run Formatter
         run: cargo fmt --all --check
 
-      -
-        name: Run Clippy
+      - name: Run Clippy
         run: cargo clippy -- -D warnings
 
-      -
-        name: Build
+      - name: Build
         run: cargo build --all-features --release

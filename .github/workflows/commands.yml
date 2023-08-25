@@ -11,11 +11,10 @@ on:
 jobs:
   deploy:
     name: Deploy Updated Global Commands
-    runs-on: chuckle-runner
+    runs-on: chortle
 
     steps:
-      -
-        name: Checkout Commands Lockfile
+      - name: Checkout Commands Lockfile
         uses: actions/checkout@v3
         with:
           sparse-checkout: |
