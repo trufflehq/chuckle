@@ -9,7 +9,7 @@ use twilight_model::id::marker::ApplicationMarker;
 use twilight_model::id::Id;
 use zephyrus::prelude::Framework;
 
-use self::commands::{breakout_rooms, config, hexil, link_github, ping, pr_comments};
+use self::commands::{breakout_rooms, config, hexil, link_github, ping, pr_comments, threads};
 
 pub mod commands;
 pub mod context_menu;
@@ -63,6 +63,11 @@ pub fn crate_framework(state: ChuckleState) -> anyhow::Result<ChuckleFramework> 
 				.description("Commands for managing breakout rooms.")
 				.command(breakout_rooms::create)
 				.command(breakout_rooms::destroy)
+		})
+		.group(|g| {
+			g.name("threads")
+				.description("Commands for managing threads.")
+				.command(threads::add_role)
 		})
 		.command(hexil)
 		.command(link_github)

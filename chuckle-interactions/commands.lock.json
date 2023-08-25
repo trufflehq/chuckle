@@ -1,6 +1,48 @@
 [
     {
         "default_member_permissions": null,
+        "description": "Set a custom role color.",
+        "name": "hexil",
+        "options": [
+            {
+                "autocomplete": false,
+                "choices": [],
+                "description": "A hex code to set your role color to.",
+                "name": "hex",
+                "required": true,
+                "type": 3
+            }
+        ],
+        "type": 1,
+        "version": "1"
+    },
+    {
+        "default_member_permissions": null,
+        "description": "Set a custom role color.",
+        "name": "link-github",
+        "options": [
+            {
+                "autocomplete": false,
+                "choices": [],
+                "description": "Your GitHub username.",
+                "name": "username",
+                "required": true,
+                "type": 3
+            }
+        ],
+        "type": 1,
+        "version": "1"
+    },
+    {
+        "default_member_permissions": null,
+        "description": "Ping the bot.",
+        "name": "ping",
+        "options": [],
+        "type": 1,
+        "version": "1"
+    },
+    {
+        "default_member_permissions": null,
         "description": "",
         "name": "Circle Back",
         "options": [],
@@ -44,43 +86,157 @@
     },
     {
         "default_member_permissions": null,
-        "description": "Set a custom role color.",
-        "name": "link-github",
+        "description": "Configure the bot for your server.",
+        "name": "config",
         "options": [
             {
-                "autocomplete": false,
-                "choices": [],
-                "description": "Your GitHub username.",
-                "name": "username",
-                "required": true,
-                "type": 3
-            }
-        ],
-        "type": 1,
-        "version": "1"
-    },
-    {
-        "default_member_permissions": null,
-        "description": "Set a custom role color.",
-        "name": "hexil",
-        "options": [
+                "description": "Configure the breakout category.",
+                "name": "breakout-category",
+                "options": [
+                    {
+                        "description": "Set the Breakout Rooms category",
+                        "name": "set",
+                        "options": [
+                            {
+                                "channel_types": [],
+                                "description": "The current Breakout Rooms category",
+                                "name": "category",
+                                "required": true,
+                                "type": 7
+                            }
+                        ],
+                        "type": 1
+                    },
+                    {
+                        "description": "List the current Breakout Rooms category",
+                        "name": "list",
+                        "options": [],
+                        "type": 1
+                    },
+                    {
+                        "description": "Unset the current Breakout Rooms category",
+                        "name": "unset",
+                        "options": [],
+                        "type": 1
+                    }
+                ],
+                "type": 2
+            },
             {
-                "autocomplete": false,
-                "choices": [],
-                "description": "A hex code to set your role color to.",
-                "name": "hex",
-                "required": true,
-                "type": 3
+                "description": "Configure the default GitHub repository for PR Comments.",
+                "name": "default-repo",
+                "options": [
+                    {
+                        "description": "List the default repository for PR Comments",
+                        "name": "list",
+                        "options": [],
+                        "type": 1
+                    },
+                    {
+                        "description": "Set the default repository for PR Comments",
+                        "name": "set",
+                        "options": [
+                            {
+                                "autocomplete": false,
+                                "choices": [],
+                                "description": "The default repository for PR Comments",
+                                "name": "repository",
+                                "required": true,
+                                "type": 3
+                            }
+                        ],
+                        "type": 1
+                    },
+                    {
+                        "description": "Unset the default GitHub repository for PR Comments",
+                        "name": "unset",
+                        "options": [],
+                        "type": 1
+                    }
+                ],
+                "type": 2
+            },
+            {
+                "description": "List the configuration.",
+                "name": "display",
+                "options": [
+                    {
+                        "description": "List the configuration.",
+                        "name": "do",
+                        "options": [],
+                        "type": 1
+                    }
+                ],
+                "type": 2
+            },
+            {
+                "description": "Configure the forum log channel.",
+                "name": "forum-log",
+                "options": [
+                    {
+                        "description": "Set the forum log channel.",
+                        "name": "set",
+                        "options": [
+                            {
+                                "channel_types": [],
+                                "description": "The channel to use as the forum log.",
+                                "name": "channel",
+                                "required": true,
+                                "type": 7
+                            }
+                        ],
+                        "type": 1
+                    },
+                    {
+                        "description": "List the forum log channel.",
+                        "name": "list",
+                        "options": [],
+                        "type": 1
+                    },
+                    {
+                        "description": "Unset the forum log channel.",
+                        "name": "unset",
+                        "options": [],
+                        "type": 1
+                    }
+                ],
+                "type": 2
+            },
+            {
+                "description": "Configure the default GitHub organization for PR Comments.",
+                "name": "default-org",
+                "options": [
+                    {
+                        "description": "Unset the default GitHub organization for PR Comments",
+                        "name": "unset",
+                        "options": [],
+                        "type": 1
+                    },
+                    {
+                        "description": "List the default organization for PR Comments",
+                        "name": "list",
+                        "options": [],
+                        "type": 1
+                    },
+                    {
+                        "description": "Set the default organization for PR Comments",
+                        "name": "set",
+                        "options": [
+                            {
+                                "autocomplete": false,
+                                "choices": [],
+                                "description": "The default organization for PR Comments",
+                                "name": "organization",
+                                "required": true,
+                                "type": 3
+                            }
+                        ],
+                        "type": 1
+                    }
+                ],
+                "type": 2
             }
         ],
-        "type": 1,
-        "version": "1"
-    },
-    {
-        "default_member_permissions": null,
-        "description": "Ping the bot.",
-        "name": "ping",
-        "options": [],
         "type": 1,
         "version": "1"
     },
@@ -89,20 +245,6 @@
         "description": "Commands for managing breakout rooms.",
         "name": "breakout-rooms",
         "options": [
-            {
-                "description": "Close breakout rooms and bring everyone back.",
-                "name": "destroy",
-                "options": [
-                    {
-                        "channel_types": [],
-                        "description": "Where to bring everyone back to",
-                        "name": "channel",
-                        "required": true,
-                        "type": 7
-                    }
-                ],
-                "type": 1
-            },
             {
                 "description": "Separate the people in a voice channel into breakout rooms.",
                 "name": "create",
@@ -143,6 +285,20 @@
                     }
                 ],
                 "type": 1
+            },
+            {
+                "description": "Close breakout rooms and bring everyone back.",
+                "name": "destroy",
+                "options": [
+                    {
+                        "channel_types": [],
+                        "description": "Where to bring everyone back to",
+                        "name": "channel",
+                        "required": true,
+                        "type": 7
+                    }
+                ],
+                "type": 1
             }
         ],
         "type": 1,
@@ -150,155 +306,21 @@
     },
     {
         "default_member_permissions": null,
-        "description": "Configure the bot for your server.",
-        "name": "config",
+        "description": "Commands for managing threads.",
+        "name": "threads",
         "options": [
             {
-                "description": "Configure the breakout category.",
-                "name": "breakout-category",
+                "description": "Add all people from a provided role to this thread.",
+                "name": "add_role",
                 "options": [
                     {
-                        "description": "Set the Breakout Rooms category",
-                        "name": "set",
-                        "options": [
-                            {
-                                "channel_types": [],
-                                "description": "The current Breakout Rooms category",
-                                "name": "category",
-                                "required": true,
-                                "type": 7
-                            }
-                        ],
-                        "type": 1
-                    },
-                    {
-                        "description": "Unset the current Breakout Rooms category",
-                        "name": "unset",
-                        "options": [],
-                        "type": 1
-                    },
-                    {
-                        "description": "List the current Breakout Rooms category",
-                        "name": "list",
-                        "options": [],
-                        "type": 1
+                        "description": "Which role to add from",
+                        "name": "role",
+                        "required": true,
+                        "type": 8
                     }
                 ],
-                "type": 2
-            },
-            {
-                "description": "List the configuration.",
-                "name": "display",
-                "options": [
-                    {
-                        "description": "List the configuration.",
-                        "name": "do",
-                        "options": [],
-                        "type": 1
-                    }
-                ],
-                "type": 2
-            },
-            {
-                "description": "Configure the forum log channel.",
-                "name": "forum-log",
-                "options": [
-                    {
-                        "description": "Set the forum log channel.",
-                        "name": "set",
-                        "options": [
-                            {
-                                "channel_types": [],
-                                "description": "The channel to use as the forum log.",
-                                "name": "channel",
-                                "required": true,
-                                "type": 7
-                            }
-                        ],
-                        "type": 1
-                    },
-                    {
-                        "description": "Unset the forum log channel.",
-                        "name": "unset",
-                        "options": [],
-                        "type": 1
-                    },
-                    {
-                        "description": "List the forum log channel.",
-                        "name": "list",
-                        "options": [],
-                        "type": 1
-                    }
-                ],
-                "type": 2
-            },
-            {
-                "description": "Configure the default GitHub repository for PR Comments.",
-                "name": "default-repo",
-                "options": [
-                    {
-                        "description": "Unset the default GitHub repository for PR Comments",
-                        "name": "unset",
-                        "options": [],
-                        "type": 1
-                    },
-                    {
-                        "description": "Set the default repository for PR Comments",
-                        "name": "set",
-                        "options": [
-                            {
-                                "autocomplete": false,
-                                "choices": [],
-                                "description": "The default repository for PR Comments",
-                                "name": "repository",
-                                "required": true,
-                                "type": 3
-                            }
-                        ],
-                        "type": 1
-                    },
-                    {
-                        "description": "List the default repository for PR Comments",
-                        "name": "list",
-                        "options": [],
-                        "type": 1
-                    }
-                ],
-                "type": 2
-            },
-            {
-                "description": "Configure the default GitHub organization for PR Comments.",
-                "name": "default-org",
-                "options": [
-                    {
-                        "description": "Unset the default GitHub organization for PR Comments",
-                        "name": "unset",
-                        "options": [],
-                        "type": 1
-                    },
-                    {
-                        "description": "Set the default organization for PR Comments",
-                        "name": "set",
-                        "options": [
-                            {
-                                "autocomplete": false,
-                                "choices": [],
-                                "description": "The default organization for PR Comments",
-                                "name": "organization",
-                                "required": true,
-                                "type": 3
-                            }
-                        ],
-                        "type": 1
-                    },
-                    {
-                        "description": "List the default organization for PR Comments",
-                        "name": "list",
-                        "options": [],
-                        "type": 1
-                    }
-                ],
-                "type": 2
+                "type": 1
             }
         ],
         "type": 1,

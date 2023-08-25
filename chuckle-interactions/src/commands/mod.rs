@@ -10,6 +10,7 @@ use zephyrus::{framework::DefaultError, prelude::*};
 // groups
 pub mod breakout_rooms;
 pub mod config;
+pub mod threads;
 
 mod hexil;
 mod link_github;

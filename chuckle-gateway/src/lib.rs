@@ -15,13 +15,14 @@ const BOT_EVENTS: EventTypeFlags = EventTypeFlags::from_bits_truncate(
 		| EventTypeFlags::CHANNEL_UPDATE.bits()
 		| EventTypeFlags::CHANNEL_DELETE.bits()
 		| EventTypeFlags::INTERACTION_CREATE.bits()
-		| EventTypeFlags::GUILD_VOICE_STATES.bits(),
+		| EventTypeFlags::GUILD_VOICE_STATES.bits()
+		| EventTypeFlags::GUILD_MEMBERS.bits(),
 );
 
 pub async fn create_gateway(state: ChuckleState, framework: ChuckleFramework) -> Result<()> {
 	let config = Config::builder(
 		CONFIG.discord_token.clone(),
-		Intents::GUILDS | Intents::GUILD_VOICE_STATES,
+		Intents::GUILDS | Intents::GUILD_VOICE_STATES | Intents::GUILD_MEMBERS,
 	)
 	.event_types(BOT_EVENTS)
 	.build();
@@ -38,7 +39,7 @@ pub async fn create_gateway(state: ChuckleState, framework: ChuckleFramework) ->
 
 		let state = state.clone();
 		let framework = framework.clone();
-		tokio::spawn(async move { handle_event(state, framework, event).await });
+		tokio::spawn(handle_event(state, framework, event));
 	}
 }
 
