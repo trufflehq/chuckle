@@ -1,56 +1,56 @@
 {
-    "db_name": "PostgreSQL",
-    "describe": {
-        "columns": [
-            {
-                "name": "id",
-                "ordinal": 0,
-                "type_info": "Uuid"
-            },
-            {
-                "name": "user_id",
-                "ordinal": 1,
-                "type_info": "Int8"
-            },
-            {
-                "name": "author_id",
-                "ordinal": 2,
-                "type_info": "Int8"
-            },
-            {
-                "name": "guild_id",
-                "ordinal": 3,
-                "type_info": "Int8"
-            },
-            {
-                "name": "channel_id",
-                "ordinal": 4,
-                "type_info": "Int8"
-            },
-            {
-                "name": "message_id",
-                "ordinal": 5,
-                "type_info": "Int8"
-            },
-            {
-                "name": "notify_at",
-                "ordinal": 6,
-                "type_info": "Timestamptz"
-            }
-        ],
-        "nullable": [
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false
-        ],
-        "parameters": {
-            "Left": []
-        }
+  "db_name": "PostgreSQL",
+  "query": "select id, user_id, author_id, guild_id, channel_id, message_id, notify_at from notifications where notify_at < now() and completed = false",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "user_id",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 2,
+        "name": "author_id",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 3,
+        "name": "guild_id",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 4,
+        "name": "channel_id",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 5,
+        "name": "message_id",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 6,
+        "name": "notify_at",
+        "type_info": "Timestamptz"
+      }
+    ],
+    "parameters": {
+      "Left": []
     },
-    "hash": "b1ca112d29ed6b3158b07a6226c8e5ec000cd1f00b91691ecb69fda985ee2886",
-    "query": "select id, user_id, author_id, guild_id, channel_id, message_id, notify_at from notifications where notify_at < now() and completed = false"
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "b1ca112d29ed6b3158b07a6226c8e5ec000cd1f00b91691ecb69fda985ee2886"
 }

@@ -1,5 +1,13 @@
 [workspace]
-members = ["chuckle*"]
+members = [
+    "chuckle",
+    "chuckle-gateway",
+    "chuckle-github",
+    "chuckle-http",
+    "chuckle-interactions",
+    "chuckle-jobs",
+    "chuckle-util"
+]
 resolver = "2"
 
 [workspace.package]
@@ -8,10 +16,10 @@ license = "MIT OR Apache-2.0"
 edition = "2021"
 repository = "https://github.com/trufflehq/chuckle"
 keywords = ["discord", "trufflehq", "truffle", "youtube", "twitch"]
-categories = ["database", "asynchronous"]
 authors = [
     "Carter Himmel <carter@truffle.vip>"
 ]
+homepage = "https://github.com/trufflehq/chuckle#readme"
 
 [workspace.dependencies]
 chuckle-gateway = { path = "./chuckle-gateway" }
@@ -27,12 +35,12 @@ axum = { version = "0.6", features = ["macros", "multipart"] }
 chrono = "0.4"
 hex = "0.4"
 once_cell = "1"
-redis = { version = "0.23.2", features = ["tokio-comp", "connection-manager"] }
+redis = { version = "0.23", features = ["tokio-comp", "connection-manager"] }
 reqwest = { version = "0.11", features = ["json"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["preserve_order"] }
 tokio = { version = "1", features = ["macros", "rt-multi-thread", "time"] }
-sqlx = { version = "0.7.1", features = [ "runtime-tokio-rustls", "postgres", "uuid", "time" ] }
+sqlx = { version = "0.7", features = [ "runtime-tokio-rustls", "postgres", "uuid", "time" ] }
 time = "0.3"
 tracing = "0.1"
 twilight-cache-inmemory = { version = "0.15", features = ["permission-calculator"] }
@@ -41,8 +49,7 @@ twilight-http = { version = "0.15", default-features = false, features = ["rustl
 twilight-model = "0.15"
 twilight-util = { version = "0.15", features = ["builder"] }
 uuid = { version = "1", features = ["serde", "v4"] }
-# zephyrus = { version = "0.10", features = ["bulk"] }
-zephyrus = { git = "https://github.com/carterhimmel/zephyrus", branch = "master", features = ["bulk"] }
+zephyrus = { git = "https://github.com/AlvaroMS25/zephyrus", rev = "3a68d762d058500bfcfa49a7cf9dbe850ed244e9", features = ["bulk"] }
 
 [profile.dev.package.sqlx-macros]
 opt-level = 3

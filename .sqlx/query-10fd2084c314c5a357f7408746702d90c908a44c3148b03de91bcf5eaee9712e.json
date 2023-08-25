@@ -1,14 +1,14 @@
 {
-    "db_name": "PostgreSQL",
-    "describe": {
-        "columns": [],
-        "nullable": [],
-        "parameters": {
-            "Left": [
-                "Uuid"
-            ]
-        }
+  "db_name": "PostgreSQL",
+  "query": "update notifications set completed = true where id = $1",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Uuid"
+      ]
     },
-    "hash": "10fd2084c314c5a357f7408746702d90c908a44c3148b03de91bcf5eaee9712e",
-    "query": "update notifications set completed = true where id = $1"
+    "nullable": []
+  },
+  "hash": "10fd2084c314c5a357f7408746702d90c908a44c3148b03de91bcf5eaee9712e"
 }

@@ -7,7 +7,6 @@
 	<a href="https://discord.gg/FahQSBMMGg"><img alt="Discord Server" src="https://img.shields.io/discord/1080316613968011335?color=5865F2&logo=discord&logoColor=white"></a>
 	<a href="https://github.com/trufflehq/chuckle/actions/workflows/test.yml"><img alt="Test status" src="https://github.com/trufflehq/chuckle/actions/workflows/test.yml/badge.svg"></a>
 	<a href="https://github.com/trufflehq/chuckle/actions/workflows/commands.yml"><img alt="Command deployment status" src="https://github.com/trufflehq/chuckle/actions/workflows/commands.yml/badge.svg"></a>
-	<a href="https://github.com/trufflehq/chuckle/actions/workflows/migrations.yml"><img alt="Database migrations status" src="https://github.com/trufflehq/chuckle/actions/workflows/migrations.yml/badge.svg"></a>
 </div>
 
 ## About

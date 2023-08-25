@@ -1,40 +1,40 @@
 {
-    "db_name": "PostgreSQL",
-    "describe": {
-        "columns": [
-            {
-                "name": "id",
-                "ordinal": 0,
-                "type_info": "Uuid"
-            },
-            {
-                "name": "discord_id",
-                "ordinal": 1,
-                "type_info": "Text"
-            },
-            {
-                "name": "github_id",
-                "ordinal": 2,
-                "type_info": "Int4"
-            },
-            {
-                "name": "created_at",
-                "ordinal": 3,
-                "type_info": "Timestamptz"
-            }
-        ],
-        "nullable": [
-            false,
-            true,
-            true,
-            false
-        ],
-        "parameters": {
-            "Left": [
-                "Text"
-            ]
-        }
+  "db_name": "PostgreSQL",
+  "query": "SELECT * FROM \"user\" WHERE discord_id = $1",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "discord_id",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 2,
+        "name": "github_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 3,
+        "name": "created_at",
+        "type_info": "Timestamptz"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
     },
-    "hash": "9b75008f29ec1a77219a34f2f5c2a74d28cb6d68688d49d5a85ff076177d4e4f",
-    "query": "SELECT * FROM \"user\" WHERE discord_id = $1"
+    "nullable": [
+      false,
+      true,
+      true,
+      false
+    ]
+  },
+  "hash": "9b75008f29ec1a77219a34f2f5c2a74d28cb6d68688d49d5a85ff076177d4e4f"
 }

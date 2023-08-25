@@ -1,14 +1,14 @@
 {
-    "db_name": "PostgreSQL",
-    "describe": {
-        "columns": [],
-        "nullable": [],
-        "parameters": {
-            "Left": [
-                "Text"
-            ]
-        }
+  "db_name": "PostgreSQL",
+  "query": "update guild_settings set default_repository_owner = null where guild_id = $1",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
     },
-    "hash": "3db2f4454d39b3f74800f3365cb706782494aae97669a83e07a84c7e7cb109de",
-    "query": "update guild_settings set default_repository_owner = null where guild_id = $1"
+    "nullable": []
+  },
+  "hash": "3db2f4454d39b3f74800f3365cb706782494aae97669a83e07a84c7e7cb109de"
 }

@@ -1,15 +1,15 @@
 {
-    "db_name": "PostgreSQL",
-    "describe": {
-        "columns": [],
-        "nullable": [],
-        "parameters": {
-            "Left": [
-                "Text",
-                "Int4"
-            ]
-        }
+  "db_name": "PostgreSQL",
+  "query": "insert into \"user\" (discord_id, github_id) values ($1, $2)",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Int4"
+      ]
     },
-    "hash": "3b3217f05ec62c3affb9d7e183ebe7a0c6ac743c0d8cc37961e4c2071f7925b6",
-    "query": "insert into \"user\" (discord_id, github_id) values ($1, $2)"
+    "nullable": []
+  },
+  "hash": "3b3217f05ec62c3affb9d7e183ebe7a0c6ac743c0d8cc37961e4c2071f7925b6"
 }

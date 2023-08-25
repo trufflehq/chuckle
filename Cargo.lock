@@ -314,6 +314,7 @@ dependencies = [
  "serde_json",
  "sqlx",
  "thiserror",
+ "tokio",
  "tower",
  "tower-http",
  "tracing",
@@ -3056,10 +3057,11 @@ dependencies = [
 [[package]]
 name = "zephyrus"
 version = "0.10.0"
-source = "git+https://github.com/carterhimmel/zephyrus?branch=master#aa4f9a8130492b1c4d2a281d31d9dd43b8fb7eaa"
+source = "git+https://github.com/AlvaroMS25/zephyrus?rev=3a68d762d058500bfcfa49a7cf9dbe850ed244e9#3a68d762d058500bfcfa49a7cf9dbe850ed244e9"
 dependencies = [
  "async-trait",
  "parking_lot",
+ "thiserror",
  "tokio",
  "tracing",
  "twilight-http",
@@ -3072,7 +3074,7 @@ dependencies = [
 [[package]]
 name = "zephyrus-macros"
 version = "0.10.0"
-source = "git+https://github.com/carterhimmel/zephyrus?branch=master#aa4f9a8130492b1c4d2a281d31d9dd43b8fb7eaa"
+source = "git+https://github.com/AlvaroMS25/zephyrus?rev=3a68d762d058500bfcfa49a7cf9dbe850ed244e9#3a68d762d058500bfcfa49a7cf9dbe850ed244e9"
 dependencies = [
  "darling",
  "proc-macro2",

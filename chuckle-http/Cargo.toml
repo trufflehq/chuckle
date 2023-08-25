@@ -1,8 +1,12 @@
 [package]
 name = "chuckle-http"
-version = "0.1.0"
-edition = "2021"
-
+description = "A HTTP server for Chuckle"
+version = { workspace = true }
+license = { workspace = true }
+edition = { workspace = true }
+authors = { workspace = true }
+repository = { workspace = true }
+homepage = { workspace = true }
 
 [dependencies]
 # core dependencies
@@ -24,3 +28,6 @@ tower-http = { version = "0.4", features = ["trace"] }
 tracing = { workspace = true }
 twilight-model = { workspace = true }
 twilight-util = { workspace = true }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["macros"] }

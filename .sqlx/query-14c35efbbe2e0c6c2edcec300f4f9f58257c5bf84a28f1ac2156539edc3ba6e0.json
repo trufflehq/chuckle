@@ -1,23 +1,23 @@
 {
-    "db_name": "PostgreSQL",
-    "describe": {
-        "columns": [
-            {
-                "name": "id",
-                "ordinal": 0,
-                "type_info": "Uuid"
-            }
-        ],
-        "nullable": [
-            false
-        ],
-        "parameters": {
-            "Left": [
-                "Int4",
-                "Uuid"
-            ]
-        }
+  "db_name": "PostgreSQL",
+  "query": "update \"user\" set github_id = $1 where id = $2 returning id",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Uuid"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int4",
+        "Uuid"
+      ]
     },
-    "hash": "14c35efbbe2e0c6c2edcec300f4f9f58257c5bf84a28f1ac2156539edc3ba6e0",
-    "query": "update \"user\" set github_id = $1 where id = $2 returning id"
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "14c35efbbe2e0c6c2edcec300f4f9f58257c5bf84a28f1ac2156539edc3ba6e0"
 }

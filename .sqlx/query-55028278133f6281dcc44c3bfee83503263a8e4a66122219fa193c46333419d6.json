@@ -1,15 +1,15 @@
 {
-    "db_name": "PostgreSQL",
-    "describe": {
-        "columns": [],
-        "nullable": [],
-        "parameters": {
-            "Left": [
-                "Text",
-                "Text"
-            ]
-        }
+  "db_name": "PostgreSQL",
+  "query": "update guild_settings set forum_log_channel_id = $1 where guild_id = $2",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text"
+      ]
     },
-    "hash": "55028278133f6281dcc44c3bfee83503263a8e4a66122219fa193c46333419d6",
-    "query": "update guild_settings set forum_log_channel_id = $1 where guild_id = $2"
+    "nullable": []
+  },
+  "hash": "55028278133f6281dcc44c3bfee83503263a8e4a66122219fa193c46333419d6"
 }

@@ -11,14 +11,20 @@ on:
 jobs:
   deploy:
     name: Deploy Updated Global Commands
-    runs-on: ubuntu-latest
+    runs-on: chuckle-runner
 
     steps:
-      - uses: actions/checkout@v3
+      -
+        name: Checkout Commands Lockfile
+        uses: actions/checkout@v3
+        with:
+          sparse-checkout: |
+            chuckle-interactions/commands.lock.json
+          sparse-checkout-cone-mode: false
 
       - name: PUT Global Commands
         run: |
           curl -X PUT https://discord.com/api/v10/applications/${{ secrets.DISCORD_APPLICATION_ID }}/commands \
             -H "Authorization: Bot ${{ secrets.DISCORD_TOKEN }}" \
             -H "content-type: application/json" \
-            -d @./chuckle-interactions/commands.lock.json
+            -d @./chuckle-interactions/commands.lock.json | jq

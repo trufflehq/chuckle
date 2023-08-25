@@ -1,54 +1,54 @@
 {
-    "db_name": "PostgreSQL",
-    "describe": {
-        "columns": [
-            {
-                "name": "id",
-                "ordinal": 0,
-                "type_info": "Uuid"
-            },
-            {
-                "name": "pr_number",
-                "ordinal": 1,
-                "type_info": "Int4"
-            },
-            {
-                "name": "repo_owner",
-                "ordinal": 2,
-                "type_info": "Text"
-            },
-            {
-                "name": "repo",
-                "ordinal": 3,
-                "type_info": "Text"
-            },
-            {
-                "name": "thread_id",
-                "ordinal": 4,
-                "type_info": "Text"
-            },
-            {
-                "name": "created_at",
-                "ordinal": 5,
-                "type_info": "Timestamptz"
-            }
-        ],
-        "nullable": [
-            false,
-            false,
-            false,
-            false,
-            false,
-            false
-        ],
-        "parameters": {
-            "Left": [
-                "Int4",
-                "Text",
-                "Text"
-            ]
-        }
+  "db_name": "PostgreSQL",
+  "query": "select * from pr_review_output where pr_number = $1 and repo_owner = $2 and repo = $3;",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "pr_number",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 2,
+        "name": "repo_owner",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 3,
+        "name": "repo",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 4,
+        "name": "thread_id",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 5,
+        "name": "created_at",
+        "type_info": "Timestamptz"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int4",
+        "Text",
+        "Text"
+      ]
     },
-    "hash": "0b5aa446aa706d7d3b4f4e485d589f2c116d529b46e74f3440201d08b6c56bf4",
-    "query": "select * from pr_review_output where pr_number = $1 and repo_owner = $2 and repo = $3;"
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "0b5aa446aa706d7d3b4f4e485d589f2c116d529b46e74f3440201d08b6c56bf4"
 }

@@ -1,5 +1,14 @@
 pub mod pull_request_review_comment;
 
+const CHUCKLE_USER_AGENT: &str = concat!(
+	env!("CARGO_PKG_NAME"),
+	"/",
+	env!("CARGO_PKG_VERSION"),
+	" (",
+	env!("CARGO_PKG_HOMEPAGE"),
+	")"
+);
+
 /// Fetches a raw file fro githubusercontent.com
 pub async fn fetch_raw_file(
 	token: String,
@@ -15,6 +24,8 @@ pub async fn fetch_raw_file(
 	let resp = client
 		.get(&file_url)
 		.header("Authorization", format!("token {token}"))
+		.header("User-Agent", CHUCKLE_USER_AGENT)
+		.header("Accept", "application/vnd.github.raw")
 		.send()
 		.await?;
 

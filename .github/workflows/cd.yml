@@ -12,17 +12,13 @@ env:
 jobs:
   deploy:
     name: Deploy Image to GCR
-    runs-on: ubuntu-latest
+    runs-on: chuckle-runner
     steps:
       - uses: actions/checkout@v3
 
       - name: Generate Image Tag
         id: generate_tag
-        run: |
-          branch=${GITHUB_REF##*/}
-          sha=${GITHUB_SHA::8}
-          ts=$(date +%s)
-          echo "tag=${branch}-${sha}-${ts}" >> $GITHUB_OUTPUT
+        uses: trufflehq/truffle-packages/actions/image_tag@main
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2

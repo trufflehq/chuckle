@@ -1,58 +1,58 @@
 {
-    "db_name": "PostgreSQL",
-    "describe": {
-        "columns": [
-            {
-                "name": "id",
-                "ordinal": 0,
-                "type_info": "Uuid"
-            },
-            {
-                "name": "guild_id",
-                "ordinal": 1,
-                "type_info": "Text"
-            },
-            {
-                "name": "forum_log_channel_id",
-                "ordinal": 2,
-                "type_info": "Text"
-            },
-            {
-                "name": "default_repository",
-                "ordinal": 3,
-                "type_info": "Text"
-            },
-            {
-                "name": "default_repository_owner",
-                "ordinal": 4,
-                "type_info": "Text"
-            },
-            {
-                "name": "created_at",
-                "ordinal": 5,
-                "type_info": "Timestamptz"
-            },
-            {
-                "name": "breakout_rooms_category_id",
-                "ordinal": 6,
-                "type_info": "Text"
-            }
-        ],
-        "nullable": [
-            false,
-            false,
-            true,
-            true,
-            true,
-            false,
-            true
-        ],
-        "parameters": {
-            "Left": [
-                "Text"
-            ]
-        }
+  "db_name": "PostgreSQL",
+  "query": "select * from guild_settings where guild_id = $1",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "guild_id",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 2,
+        "name": "forum_log_channel_id",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 3,
+        "name": "default_repository",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 4,
+        "name": "default_repository_owner",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 5,
+        "name": "created_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 6,
+        "name": "breakout_rooms_category_id",
+        "type_info": "Text"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
     },
-    "hash": "d42108e4bf27ca3d1d18c8a94a50e9bf87d5132028d0e03a131bfc8538272d9b",
-    "query": "select * from guild_settings where guild_id = $1"
+    "nullable": [
+      false,
+      false,
+      true,
+      true,
+      true,
+      false,
+      true
+    ]
+  },
+  "hash": "d42108e4bf27ca3d1d18c8a94a50e9bf87d5132028d0e03a131bfc8538272d9b"
 }

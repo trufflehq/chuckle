@@ -1,17 +1,20 @@
 [package]
 name = "chuckle-gateway"
-version = "0.1.0"
-edition = "2021"
-
+description = "The Discord gateway connection for Chuckle."
+version = { workspace = true }
+license = { workspace = true }
+edition = { workspace = true }
+authors = { workspace = true }
+repository = { workspace = true }
+homepage = { workspace = true }
 
 [dependencies]
-# core dependencies
 chuckle-interactions = { workspace = true }
 chuckle-util = { workspace = true }
 
 anyhow = { workspace = true }
 once_cell = { workspace = true }
+tokio = { workspace = true, features = ["rt"] }
 tracing = { workspace = true }
 twilight-gateway = { workspace = true }
 twilight-model = { workspace = true }
-tokio = { workspace = true, features = ["rt"] }

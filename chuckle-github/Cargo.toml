@@ -1,7 +1,12 @@
 [package]
 name = "chuckle-github"
-version = "0.1.0"
-edition = "2021"
+description = "GitHub models and logic for PR review comments &e"
+version = { workspace = true }
+license = { workspace = true }
+edition = { workspace = true }
+authors = { workspace = true }
+repository = { workspace = true }
+homepage = { workspace = true }
 
 [dependencies]
 anyhow = { workspace = true }

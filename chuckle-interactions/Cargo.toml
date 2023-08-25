@@ -1,8 +1,12 @@
 [package]
 name = "chuckle-interactions"
-version = "0.1.0"
-edition = "2021"
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+description = "Logic for handling Discord interactions."
+version = { workspace = true }
+license = { workspace = true }
+edition = { workspace = true }
+authors = { workspace = true }
+repository = { workspace = true }
+homepage = { workspace = true }
 
 [dependencies]
 anyhow = { workspace = true }
@@ -11,20 +15,18 @@ chuckle-util = { workspace = true }
 hex = { workspace = true }
 ms = "0.1.1"
 once_cell = { workspace = true }
+rand = "0.8.5"
 reqwest = { workspace = true }
 serde_json = { workspace = true }
 sqlx = { workspace = true }
 time = { workspace = true }
+tokio = { workspace = true, optional = true }
 tracing = { workspace = true }
 twilight-cache-inmemory = { workspace = true }
 twilight-model = { workspace = true }
 twilight-util = { workspace = true }
 uuid = { workspace = true }
 zephyrus = { workspace = true }
-
-# lockfile deps
-tokio = { workspace = true, optional = true }
-rand = "0.8.5"
 
 [features]
 default = ["lockfile"]
