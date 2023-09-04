@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout Commands Lockfile
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           sparse-checkout: |
             chuckle-interactions/commands.lock.json
