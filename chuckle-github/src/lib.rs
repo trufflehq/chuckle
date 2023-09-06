@@ -48,6 +48,6 @@ mod test {
 		assert!(file.is_ok());
 		let file = file.unwrap();
 
-		assert!(file.len() > 0);
+		assert!(!file.is_empty());
 	}
 }

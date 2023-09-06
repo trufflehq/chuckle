@@ -86,3 +86,23 @@ pub async fn text_response(
 
 	Ok(())
 }
+
+/// Shorthand to creating a text response to an interaction.
+pub async fn create_followup(
+	ctx: &SlashContext<'_, ChuckleState>,
+	text: String,
+	ephemeral: bool,
+) -> DefaultCommandResult {
+	let mut builder = ctx
+		.interaction_client
+		.create_followup(&ctx.interaction.token)
+		.content(&text)?;
+
+	if ephemeral {
+		builder = builder.flags(MessageFlags::EPHEMERAL);
+	}
+
+	builder.await?;
+
+	Ok(())
+}

@@ -16,7 +16,6 @@ pub async fn run(state: &ChuckleState) -> anyhow::Result<()> {
 		.execute(&state.db)
 		.await?;
 
-		// TODO: send message
 		let dm_channel = state
 			.http_client
 			.create_private_channel(Id::<UserMarker>::new(row.user_id as u64))
@@ -24,7 +23,7 @@ pub async fn run(state: &ChuckleState) -> anyhow::Result<()> {
 			.model()
 			.await?;
 
-		let _ = state
+		state
 			.http_client
 			.create_message(dm_channel.id)
 			.content(
@@ -34,7 +33,7 @@ pub async fn run(state: &ChuckleState) -> anyhow::Result<()> {
 				)
 				.as_str(),
 			)?
-			.await;
+			.await?;
 	}
 
 	Ok(())

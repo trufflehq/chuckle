@@ -273,7 +273,7 @@ mod tests {
 
 	#[test]
 	fn test_parse() {
-		static DATA: &'static [u8] = include_bytes!(concat!(
+		static DATA: &[u8] = include_bytes!(concat!(
 			env!("CARGO_MANIFEST_DIR"),
 			"/data/pull_request_review_comment.json"
 		));

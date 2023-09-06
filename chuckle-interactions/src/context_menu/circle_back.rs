@@ -4,7 +4,7 @@ use time::{Duration, OffsetDateTime};
 use twilight_model::application::interaction::InteractionData;
 use zephyrus::prelude::*;
 
-use crate::commands::{handle_generic_error, text_response, user_from_interaction};
+use crate::commands::{create_followup, handle_generic_error, user_from_interaction};
 
 #[derive(Modal, Debug)]
 #[modal(title = "Circle Back")]
@@ -43,7 +43,7 @@ pub async fn circle_back(ctx: &SlashContext<ChuckleState>) -> DefaultCommandResu
 	let time = if let Some(time) = ms!(&output.til_notify) {
 		time
 	} else {
-		return text_response(
+		return create_followup(
 			ctx,
 			"The duration you provided was invalid. Please try again with something like [this](https://github.com/nesso99/ms-rust/blob/5a579c9f5b45851086ace2bfa506f541e49b3bbd/tests/main.rs#L6-L22)".to_string(),
 			false,
@@ -62,7 +62,7 @@ pub async fn circle_back(ctx: &SlashContext<ChuckleState>) -> DefaultCommandResu
         notify_at
     ).fetch_one(&ctx.data.db).await?;
 
-	text_response(
+	create_followup(
 		ctx,
 		format!("Sounds good! I'll remind you in {}.", ms!(time, true)),
 		true,
