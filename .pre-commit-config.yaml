@@ -8,9 +8,26 @@ repos:
           - id: check-yaml
           - id: check-added-large-files
 
-    - repo: https://github.com/doublify/pre-commit-rust
-      rev: v1.0
+    - repo: local
       hooks:
-          - id: fmt
-          - id: cargo-check
-          - id: clippy
+        - id: format
+          name: format
+          description: Format files with cargo make fmt.
+          entry: cargo make format
+          language: system
+          types: [rust]
+          pass_filenames: false
+        - id: lint
+          name: lint
+          description: Lint files with cargo make lint.
+          entry: cargo make lint
+          language: system
+          types: [rust]
+          pass_filenames: false
+        - id: check
+          name: check
+          description: Check files with Cargo Check
+          entry: cargo check
+          language: system
+          types: [rust]
+          pass_filenames: false

@@ -4,7 +4,7 @@ use time::{Duration, OffsetDateTime};
 use twilight_model::application::interaction::InteractionData;
 use zephyrus::prelude::*;
 
-use crate::commands::{text_response, user_from_interaction};
+use crate::commands::{handle_generic_error, text_response, user_from_interaction};
 
 #[derive(Modal, Debug)]
 #[modal(title = "Circle Back")]
@@ -21,6 +21,7 @@ struct CircleBackModal {
 #[command(message, name = "Circle Back")]
 #[description = "Circle back to this message in a given amount of time"]
 #[only_guilds]
+#[error_handler(handle_generic_error)]
 pub async fn circle_back(ctx: &SlashContext<ChuckleState>) -> DefaultCommandResult {
 	let data = match &ctx.interaction.data {
 		Some(InteractionData::ApplicationCommand(data)) => data,
