@@ -6,6 +6,7 @@ use tokio::time::sleep;
 
 mod circle_back;
 mod sweep_modals;
+mod sweep_notifications;
 
 pub async fn start(state: ChuckleState) {
 	tracing::debug!("Starting workers");
@@ -20,10 +21,19 @@ pub async fn start(state: ChuckleState) {
 		}
 	});
 
+	let state_clone = state.clone();
 	scheduler.every(5.minutes()).run(move || {
-		let state = state.clone();
+		let state = state_clone.clone();
 		async move {
 			sweep_modals::run(&state).await.unwrap();
+		}
+	});
+
+	let state_clone = state.clone();
+	scheduler.every(5.minutes()).run(move || {
+		let state = state_clone.clone();
+		async move {
+			sweep_notifications::run(&state).await.unwrap();
 		}
 	});
 
