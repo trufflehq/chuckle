@@ -34,14 +34,10 @@ async fn handle_webhook(
 
 	tracing::info!("{:#?}", serde_json::to_string_pretty(&event).unwrap());
 
-	#[allow(clippy::single_match)]
-	match webhook.event_type.as_str() {
-		"pull_request_review_comment" => {
-			let data: PullRequestReviewComment = serde_json::from_value(event).unwrap();
+	if webhook.event_type.as_str() == "pull_request_review_comment" {
+		let data: PullRequestReviewComment = serde_json::from_value(event).unwrap();
 
-			let _ = handle_pr_review_comment(state, data).await;
-		}
-		_ => {}
+		let _ = handle_pr_review_comment(state, data).await;
 	};
 
 	Ok(StatusCode::OK.into_response())
