@@ -30,6 +30,20 @@ args = [
 ]
 env = { SQLX_OFFLINE = "true" }
 
+[tasks.lint-ci]
+command = "cargo"
+args = [
+    "clippy",
+    "--tests",
+    "--examples",
+    "--all-targets",
+    "--all-features",
+    "--workspace",
+    "--",
+    "-D",
+    "warnings",
+]
+
 [tasks.sort-deps]
 command = "cargo"
 args = [
