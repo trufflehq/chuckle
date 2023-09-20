@@ -158,7 +158,8 @@ async fn handle_pr_review_comment(
 		.http_client
 		.create_message(thread_id)
 		.content(&content)
-		.unwrap();
+		.unwrap()
+		.allowed_mentions(None);
 
 	let res = msg.await.unwrap();
 	tracing::debug!("{:#?}", res);
