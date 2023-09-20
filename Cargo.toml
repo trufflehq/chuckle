@@ -43,6 +43,7 @@ tokio = { version = "1", features = ["macros", "rt-multi-thread", "time"] }
 sqlx = { version = "0.7", features = [ "runtime-tokio-rustls", "postgres", "uuid", "time" ] }
 time = "0.3"
 tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["fmt", "env-filter", "json"] }
 twilight-cache-inmemory = { version = "0.15", features = ["permission-calculator"] }
 twilight-gateway = { version = "0.15", default-features = false, features = ["rustls-webpki-roots"] }
 twilight-http = { version = "0.15", default-features = false, features = ["rustls-webpki-roots"] }

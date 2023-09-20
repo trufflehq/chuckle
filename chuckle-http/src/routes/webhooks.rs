@@ -48,8 +48,12 @@ async fn handle_webhook(
 }
 
 async fn code_block(data: PullRequestReviewComment) -> anyhow::Result<String> {
-	let start_line = data.comment.start_line.and_then(|x| x.as_i64());
-	let end_line = data.comment.line;
+	let start_line = data
+		.comment
+		.start_line
+		.and_then(|x| x.as_i64())
+		.or(Some(data.comment.original_line));
+	let end_line = data.comment.line.unwrap_or(data.comment.original_line);
 
 	let content = fetch_raw_file(
 		CONFIG.github_access_token.clone(),
@@ -138,8 +142,10 @@ async fn handle_pr_review_comment(
 	);
 
 	let mut subheader = format!("[`{}`]({})", data.comment.path, file_url);
-	if let Some(start) = data.comment.start_line.and_then(|x| x.as_i64()) {
-		let end = data.comment.line;
+	if let (Some(start), Some(end)) = (
+		data.comment.start_line.and_then(|x| x.as_i64()),
+		data.comment.line,
+	) {
 		let comment = format!(" `(L{}-{})`", start, end);
 		subheader.push_str(&comment);
 	}

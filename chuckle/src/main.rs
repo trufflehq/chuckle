@@ -5,13 +5,17 @@ use tracing_subscriber::prelude::*;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-	tracing_subscriber::registry()
-		.with(
-			tracing_subscriber::EnvFilter::try_from_default_env()
-				.unwrap_or_else(|_| "debug,hyper=info,tower_http=info,rustls=info".into()),
-		)
-		.with(tracing_subscriber::fmt::layer())
-		.init();
+	let registry = tracing_subscriber::registry().with(
+		tracing_subscriber::EnvFilter::try_from_default_env()
+			.unwrap_or_else(|_| "debug,hyper=info,tower_http=info,rustls=info".into()),
+	);
+
+	#[cfg(not(debug_assertions))]
+	let registry = registry.with(tracing_subscriber::fmt::layer().json());
+	#[cfg(debug_assertions)]
+	let registry = registry.with(tracing_subscriber::fmt::layer());
+
+	registry.init();
 
 	let state: ChuckleState = Arc::new(State::new().await);
 	let framework = crate_framework(state.clone()).expect("Failed to create zephryus framework");
@@ -23,6 +27,7 @@ async fn main() -> anyhow::Result<()> {
 		.collect::<Vec<_>>()
 		.join(", ");
 	tracing::info!("Loaded commands: {:#?}", commands);
+
 	let groups = framework
 		.groups
 		.values()

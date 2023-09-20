@@ -16,3 +16,4 @@ serde_json = { workspace = true }
 
 [dev-dependencies]
 tokio = { workspace = true }
+format_serde_error = "0.3"

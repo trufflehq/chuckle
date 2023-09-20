@@ -33,7 +33,7 @@ pub struct Comment {
 	pub start_line: Option<serde_json::Value>,
 	pub original_start_line: Option<serde_json::Value>,
 	pub start_side: Option<serde_json::Value>,
-	pub line: i64,
+	pub line: Option<i64>,
 	pub original_line: i64,
 	pub side: String,
 	pub original_position: i64,
@@ -269,23 +269,30 @@ pub struct PullRequestLinks {
 
 #[cfg(test)]
 mod tests {
+	use format_serde_error::SerdeError;
+
 	use crate::pull_request_review_comment::PullRequestReviewComment;
 
 	#[test]
-	fn test_parse() {
+	fn test_parse() -> Result<(), anyhow::Error> {
 		static DATA: &[u8] = include_bytes!(concat!(
 			env!("CARGO_MANIFEST_DIR"),
 			"/data/pull_request_review_comment.json"
 		));
 
-		let res = serde_json::from_slice::<PullRequestReviewComment>(DATA);
-		assert!(res.is_ok());
+		let data_string = String::from_utf8_lossy(DATA);
 
-		let data = res.unwrap();
+		let data = serde_json::from_slice::<PullRequestReviewComment>(DATA)
+			.map_err(|err| SerdeError::new(data_string.to_string(), err))?;
+		// assert!(res.is_ok());
+
+		// let data = res.unwrap();
 		assert_eq!(data.action, "created");
 		assert_eq!(data.comment.user.login, "austinhallock");
 		assert_eq!(data.comment.author_association, "CONTRIBUTOR");
 		assert_eq!(data.pull_request.number, 116);
 		assert_eq!(data.pull_request.base.base_ref, "main");
+
+		Ok(())
 	}
 }
