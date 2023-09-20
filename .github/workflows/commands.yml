@@ -1,8 +1,9 @@
-name: Deploy Commands
+name: Deploy Updated Global Commands
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
     paths:
       - 'chuckle-interactions/commands.lock.json'
       - '.github/workflows/commands.yml'
@@ -10,12 +11,11 @@ on:
 
 jobs:
   deploy:
-    name: Deploy Updated Global Commands
     runs-on: chortle
 
     steps:
       - name: Checkout Commands Lockfile
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           sparse-checkout: |
             chuckle-interactions/commands.lock.json
