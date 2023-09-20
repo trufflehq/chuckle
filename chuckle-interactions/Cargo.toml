@@ -17,17 +17,17 @@ ms = "0.1.1"
 once_cell = { workspace = true }
 rand = "0.8.5"
 reqwest = { workspace = true }
+serde = { workspace = true }
 serde_json = { workspace = true }
 sqlx = { workspace = true }
+indoc = "2"
 time = { workspace = true }
-tokio = { workspace = true, optional = true }
+tokio = { workspace = true }
 tracing = { workspace = true }
 twilight-cache-inmemory = { workspace = true }
 twilight-model = { workspace = true }
 twilight-util = { workspace = true }
 uuid = { workspace = true }
+url = "2"
 zephyrus = { workspace = true }
-
-[features]
-default = ["lockfile"]
-lockfile = ["tokio"]
+itertools = "0.11.0"

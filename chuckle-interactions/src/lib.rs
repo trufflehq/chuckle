@@ -1,4 +1,8 @@
 #![allow(clippy::unused_unit)] // wtf
+
+#[macro_use]
+extern crate serde;
+
 use std::sync::Arc;
 
 use chuckle_util::{
@@ -9,10 +13,14 @@ use twilight_model::id::marker::ApplicationMarker;
 use twilight_model::id::Id;
 use zephyrus::prelude::Framework;
 
-use self::commands::{breakout_rooms, config, hexil, link_github, ping, pr_comments, threads};
+use self::commands::{
+	breakout_rooms, config, hexil, link_github, ping, poll, pr_comments, threads,
+};
 
 pub mod commands;
 pub mod context_menu;
+pub mod custom_ids;
+pub mod message_components;
 
 pub type ChuckleFramework = Arc<Framework<ChuckleState, ()>>;
 
@@ -72,6 +80,7 @@ pub fn crate_framework(state: ChuckleState) -> anyhow::Result<ChuckleFramework> 
 		.command(hexil)
 		.command(link_github)
 		.command(ping)
+		.command(poll)
 		.command(pr_comments)
 		.command(context_menu::circle_back)
 		.build();
@@ -80,7 +89,6 @@ pub fn crate_framework(state: ChuckleState) -> anyhow::Result<ChuckleFramework> 
 }
 
 // create the commands lockfile
-#[cfg(feature = "lockfile")]
 pub async fn create_lockfile() -> anyhow::Result<String> {
 	let state = Arc::new(State::new().await);
 	let framework = crate_framework(state)?;

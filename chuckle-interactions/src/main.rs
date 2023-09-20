@@ -1,6 +1,5 @@
 use chuckle_interactions::create_lockfile;
 
-#[cfg(feature = "lockfile")]
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
 	let content = create_lockfile()

@@ -11,21 +11,11 @@ script = '''
     pre-commit --version || pip install pre-commit
     pre-commit install || echo "failed to install git hooks!" 1>&2
 
-    echo # things required by `cargo make pre-commit`
-    cargo install cargo-spellcheck
-
     echo # things required by sqlx
     cargo install sqlx-cli@0.7.2 --no-default-features --features native-tls,postgres
 
     echo # things required by `cargo make sort-deps`
     cargo install cargo-sort
-
-    #echo # things required by `cargo make coverage`
-    #rustup component add llvm-tools-preview
-    #cargo install cargo-llvm-cov
-
-    #echo # things required by `cargo make audit`
-    #cargo install cargo-audit
 '''
 
 [tasks.lint]
@@ -49,6 +39,15 @@ args = [
 ]
 
 [tasks.format]
+install_crate = "rustfmt"
+command = "cargo"
+args = ["fmt", "--all"]
+
+[tasks.fmt]
+alias = "format"
+
+[tasks.format-ci]
+install_crate = "rustfmt"
 command = "cargo"
 args = ["fmt", "--all", "--", "--check"]
 

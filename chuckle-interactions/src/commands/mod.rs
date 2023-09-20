@@ -15,9 +15,12 @@ pub mod threads;
 mod hexil;
 mod link_github;
 mod ping;
+mod poll;
 mod pr_comments;
 
-pub use {hexil::hexil, link_github::link_github, ping::ping, pr_comments::pr_comments};
+pub use {
+	hexil::hexil, link_github::link_github, ping::ping, poll::poll, pr_comments::pr_comments,
+};
 
 pub fn user_from_interaction(interaction: &Interaction) -> User {
 	if interaction.guild_id.is_some() {
@@ -29,15 +32,17 @@ pub fn user_from_interaction(interaction: &Interaction) -> User {
 
 #[error_handler]
 async fn handle_generic_error(ctx: &SlashContext<ChuckleState>, err: DefaultError) {
-	let _ = text_response(
+	tracing::error!("An unknown error occurred: {:#?}", err);
+
+	let _ = create_followup(
 		ctx,
 		format!(
 			r#"
-			An unknown error occurred:
-			```rs
-			{:#?}
-			```
-		"#,
+An unknown error occurred:
+```rs
+{:#?}
+```
+"#,
 			err
 		),
 		true,
@@ -101,6 +106,21 @@ pub async fn create_followup(
 	if ephemeral {
 		builder = builder.flags(MessageFlags::EPHEMERAL);
 	}
+
+	builder.await?;
+
+	Ok(())
+}
+
+/// Shorthand for updating the response to an interaction after being deferred.
+pub async fn update_response(
+	ctx: &SlashContext<'_, ChuckleState>,
+	text: String,
+) -> DefaultCommandResult {
+	let mut builder = ctx
+		.interaction_client
+		.update_response(&ctx.interaction.token);
+	builder = builder.content(Some(&text)).unwrap();
 
 	builder.await?;
 

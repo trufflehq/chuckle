@@ -30,7 +30,11 @@ pub async fn handle(
 
 			Ok(())
 		}
-		InteractionType::MessageComponent => unimplemented!(),
+		InteractionType::MessageComponent => {
+			chuckle_interactions::message_components::handle(framework, interaction).await?;
+
+			Ok(())
+		}
 		InteractionType::ApplicationCommandAutocomplete => unimplemented!(""),
 		_ => unimplemented!(),
 	}

@@ -5,7 +5,6 @@ use clokwerk::{AsyncScheduler, TimeUnits};
 use tokio::time::sleep;
 
 mod circle_back;
-mod sweep_modals;
 mod sweep_notifications;
 
 pub async fn start(state: ChuckleState) {
@@ -18,14 +17,6 @@ pub async fn start(state: ChuckleState) {
 		let state = state_clone.clone();
 		async move {
 			circle_back::run(&state).await.unwrap();
-		}
-	});
-
-	let state_clone = state.clone();
-	scheduler.every(5.minutes()).run(move || {
-		let state = state_clone.clone();
-		async move {
-			sweep_modals::run(&state).await.unwrap();
 		}
 	});
 
