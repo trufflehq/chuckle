@@ -1,5 +1,5 @@
 use chuckle_util::{db::get_settings, ChuckleState};
-use zephyrus::prelude::*;
+use vesper::prelude::*;
 
 use crate::commands::{handle_generic_error, text_response};
 

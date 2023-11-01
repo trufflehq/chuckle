@@ -7,7 +7,7 @@ use chuckle_util::{
 };
 use twilight_model::id::marker::ApplicationMarker;
 use twilight_model::id::Id;
-use zephyrus::prelude::Framework;
+use vesper::prelude::Framework;
 
 use self::commands::{breakout_rooms, config, hexil, link_github, ping, pr_comments, threads};
 

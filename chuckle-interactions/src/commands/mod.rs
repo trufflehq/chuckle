@@ -5,7 +5,7 @@ use twilight_model::{
 	http::interaction::{InteractionResponse, InteractionResponseData, InteractionResponseType},
 	user::User,
 };
-use zephyrus::{framework::DefaultError, prelude::*};
+use vesper::{framework::DefaultError, prelude::*};
 
 // groups
 pub mod breakout_rooms;
@@ -29,6 +29,7 @@ pub fn user_from_interaction(interaction: &Interaction) -> User {
 
 #[error_handler]
 async fn handle_generic_error(ctx: &SlashContext<ChuckleState>, err: DefaultError) {
+	tracing::error!("Error handling command: {:#?}", err);
 	let _ = text_response(
 		ctx,
 		format!(

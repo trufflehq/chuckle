@@ -1,6 +1,6 @@
 use super::{handle_generic_error, text_response};
 use chuckle_util::ChuckleState;
-use zephyrus::prelude::*;
+use vesper::prelude::*;
 
 #[tracing::instrument(skip(ctx))]
 #[command]

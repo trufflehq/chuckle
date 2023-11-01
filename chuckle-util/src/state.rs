@@ -1,7 +1,7 @@
 use crate::CONFIG;
 use once_cell::sync::Lazy;
-use std::str::FromStr;
 use std::sync::Arc;
+use std::{str::FromStr, time::Duration};
 use twilight_cache_inmemory::InMemoryCache;
 use twilight_http::client::InteractionClient;
 use twilight_model::id::{marker::ApplicationMarker, Id};
@@ -28,7 +28,10 @@ impl State {
 	}
 
 	pub fn http_client() -> twilight_http::Client {
-		twilight_http::Client::new(CONFIG.discord_token.clone())
+		twilight_http::Client::builder()
+			.token(CONFIG.discord_token.clone())
+			.timeout(Duration::from_secs(10))
+			.build()
 	}
 
 	pub fn interactions_client(&self) -> Arc<InteractionClient> {

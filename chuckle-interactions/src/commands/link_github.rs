@@ -1,5 +1,5 @@
 use chuckle_util::ChuckleState;
-use zephyrus::prelude::*;
+use vesper::prelude::*;
 
 use super::{handle_generic_error, text_response, user_from_interaction};
 

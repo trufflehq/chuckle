@@ -2,7 +2,7 @@ use chuckle_util::ChuckleState;
 use ms::*;
 use time::{Duration, OffsetDateTime};
 use twilight_model::application::interaction::InteractionData;
-use zephyrus::prelude::*;
+use vesper::prelude::*;
 
 use crate::commands::{create_followup, handle_generic_error, user_from_interaction};
 

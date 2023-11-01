@@ -26,7 +26,7 @@ twilight-cache-inmemory = { workspace = true }
 twilight-model = { workspace = true }
 twilight-util = { workspace = true }
 uuid = { workspace = true }
-zephyrus = { workspace = true }
+vesper = { workspace = true }
 
 [features]
 default = ["lockfile"]

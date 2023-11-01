@@ -50,7 +50,7 @@ twilight-http = { version = "0.15", default-features = false, features = ["rustl
 twilight-model = "0.15"
 twilight-util = { version = "0.15", features = ["builder"] }
 uuid = { version = "1", features = ["serde", "v4"] }
-zephyrus = { git = "https://github.com/AlvaroMS25/zephyrus", rev = "3a68d762d058500bfcfa49a7cf9dbe850ed244e9", features = ["bulk"] }
+vesper = { version = "0.11", features = ["bulk"] }
 
 [profile.dev.package.sqlx-macros]
 opt-level = 3

@@ -7,7 +7,7 @@ use chuckle_util::{
 };
 use rand::seq::SliceRandom;
 use twilight_model::{channel::Channel, id::Id};
-use zephyrus::{prelude::*, twilight_exports::ChannelMarker};
+use vesper::{prelude::*, twilight_exports::ChannelMarker};
 
 use super::{edit_response, handle_generic_error, text_response};
 

@@ -344,7 +344,7 @@ dependencies = [
  "twilight-model",
  "twilight-util",
  "uuid",
- "zephyrus",
+ "vesper",
 ]
 
 [[package]]
@@ -374,7 +374,7 @@ dependencies = [
  "twilight-http",
  "twilight-model",
  "uuid",
- "zephyrus",
+ "vesper",
 ]
 
 [[package]]
@@ -2846,6 +2846,36 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "49874b5167b65d7193b8aba1567f5c7d93d001cafc34600cee003eda787e483f"
 
 [[package]]
+name = "vesper"
+version = "0.11.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6578b6c9fb8dfeb865767621df2153dab557f4f2183f3b85901720941e2d60e8"
+dependencies = [
+ "async-trait",
+ "parking_lot",
+ "thiserror",
+ "tokio",
+ "tracing",
+ "twilight-http",
+ "twilight-model",
+ "twilight-util",
+ "twilight-validate",
+ "vesper-macros",
+]
+
+[[package]]
+name = "vesper-macros"
+version = "0.11.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e11caf0e4362ca72afdae15213f1016e9b7d5d6d964113babec1a0996a9aa3e4"
+dependencies = [
+ "darling",
+ "proc-macro2",
+ "quote",
+ "syn 2.0.25",
+]
+
+[[package]]
 name = "want"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3147,34 +3177,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "56c1936c4cc7a1c9ab21a1ebb602eb942ba868cbd44a99cb7cdc5892335e1c85"
 dependencies = [
  "linked-hash-map",
-]
-
-[[package]]
-name = "zephyrus"
-version = "0.10.0"
-source = "git+https://github.com/AlvaroMS25/zephyrus?rev=3a68d762d058500bfcfa49a7cf9dbe850ed244e9#3a68d762d058500bfcfa49a7cf9dbe850ed244e9"
-dependencies = [
- "async-trait",
- "parking_lot",
- "thiserror",
- "tokio",
- "tracing",
- "twilight-http",
- "twilight-model",
- "twilight-util",
- "twilight-validate",
- "zephyrus-macros",
-]
-
-[[package]]
-name = "zephyrus-macros"
-version = "0.10.0"
-source = "git+https://github.com/AlvaroMS25/zephyrus?rev=3a68d762d058500bfcfa49a7cf9dbe850ed244e9#3a68d762d058500bfcfa49a7cf9dbe850ed244e9"
-dependencies = [
- "darling",
- "proc-macro2",
- "quote",
- "syn 2.0.25",
 ]
 
 [[package]]

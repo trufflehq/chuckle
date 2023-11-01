@@ -3,7 +3,7 @@ use twilight_model::http::interaction::{
 	InteractionResponse, InteractionResponseData, InteractionResponseType,
 };
 use twilight_model::{channel::message::AllowedMentions, id::Id};
-use zephyrus::{prelude::*, twilight_exports::RoleMarker};
+use vesper::{prelude::*, twilight_exports::RoleMarker};
 
 use super::handle_generic_error;
 

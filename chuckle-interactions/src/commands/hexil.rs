@@ -4,7 +4,7 @@ use twilight_model::{
 	guild::Permissions,
 	id::{marker::RoleMarker, Id},
 };
-use zephyrus::prelude::*;
+use vesper::prelude::*;
 
 use super::{handle_generic_error, text_response, user_from_interaction};
 
