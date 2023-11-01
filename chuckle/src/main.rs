@@ -10,8 +10,8 @@ async fn main() -> anyhow::Result<()> {
 			.unwrap_or_else(|_| "debug,hyper=info,tower_http=info,rustls=info".into()),
 	);
 
-	#[cfg(not(debug_assertions))]
-	let registry = registry.with(tracing_subscriber::fmt::layer().json());
+	// #[cfg(not(debug_assertions))]
+	// let registry = registry.with(tracing_subscriber::fmt::layer().json());
 	#[cfg(debug_assertions)]
 	let registry = registry.with(tracing_subscriber::fmt::layer());
 
