@@ -12,7 +12,7 @@ async fn main() -> anyhow::Result<()> {
 
 	// #[cfg(not(debug_assertions))]
 	// let registry = registry.with(tracing_subscriber::fmt::layer().json());
-	#[cfg(debug_assertions)]
+	// #[cfg(debug_assertions)]
 	let registry = registry.with(tracing_subscriber::fmt::layer());
 
 	registry.init();
