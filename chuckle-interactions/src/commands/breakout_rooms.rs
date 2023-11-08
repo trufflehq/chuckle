@@ -145,7 +145,7 @@ pub async fn destroy(
 			.http_client()
 			.update_guild_member(ctx.interaction.guild_id.unwrap(), state.user_id())
 			.channel_id(Some(channel))
-			.await?;
+			.await;
 		});
 
 		tracing::info!("successfully moved user: {:?}", res);
