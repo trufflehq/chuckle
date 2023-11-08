@@ -140,11 +140,13 @@ pub async fn destroy(
 
 		// move the member back to home
 		tracing::info!("moving user: {:?}", state.user_id());
-		let res = ctx
+		let _ = tokio::spawn(async move {
+			let res = ctx
 			.http_client()
 			.update_guild_member(ctx.interaction.guild_id.unwrap(), state.user_id())
 			.channel_id(Some(channel))
 			.await?;
+		});
 
 		tracing::info!("successfully moved user: {:?}", res);
 	}
