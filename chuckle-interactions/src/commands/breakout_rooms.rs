@@ -146,9 +146,9 @@ pub async fn destroy(
 			.update_guild_member(ctx.interaction.guild_id.unwrap(), state.user_id())
 			.channel_id(Some(channel))
 			.await;
-		});
 
-		tracing::info!("successfully moved user: {:?}", res);
+			tracing::info!("successfully moved user: {:?}", res);
+		});
 	}
 
 	// delete the voice channels
