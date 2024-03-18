@@ -127,7 +127,7 @@ async fn handle_pr_review_comment(
 
 	let header = format!(
 		"### [New Comment](<{}>) from {}",
-		user_string, data.comment.links.html.href
+		data.comment.links.html.href, user_string
 	);
 	let file_url = format!(
 		"https://github.com/{}/{}/blob/{}/{}",
