@@ -18,16 +18,16 @@ anyhow = { workspace = true }
 axum = { workspace = true }
 github-webhooks = { git = "https://github.com/trufflehq/github-webhooks.git", features = ["axum"] }
 once_cell = { workspace = true }
-ring = "0.16"
+ring = "0.17.8"
 serde = { workspace = true }
 serde_json = { workspace = true }
 sqlx = { workspace = true }
-thiserror = "1.0.48"
-tower = "0.4"
-tower-http = { version = "0.4", features = ["trace"] }
+thiserror = "1.0.65"
+tower = "0.5.1"
+tower-http = { version = "0.6.1", features = ["trace"] }
 tracing = { workspace = true }
 twilight-model = { workspace = true }
 twilight-util = { workspace = true }
 
 [dev-dependencies]
-tokio = { version = "1", features = ["macros"] }
+tokio = { version = "1.41.0", features = ["macros"] }
