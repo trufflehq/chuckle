@@ -29,28 +29,28 @@ chuckle-interactions = { path = "./chuckle-interactions", default-features = fal
 chuckle-jobs = { path = "./chuckle-jobs" }
 chuckle-util = { path = "./chuckle-util" }
 
-anyhow = "1"
-async-trait = "0.1"
-axum = { version = "0.6", features = ["macros", "multipart"] }
-chrono = "0.4"
-hex = "0.4"
-once_cell = "1"
-redis = { version = "0.23", features = ["tokio-comp", "connection-manager"] }
-reqwest = { version = "0.11", features = ["json"] }
-serde = { version = "1", features = ["derive"] }
-serde_json = { version = "1", features = ["preserve_order"] }
-tokio = { version = "1", features = ["macros", "rt-multi-thread", "time"] }
-sqlx = { version = "0.7", features = [ "runtime-tokio-rustls", "postgres", "uuid", "time" ] }
-time = "0.3"
-tracing = "0.1"
-tracing-subscriber = { version = "0.3", features = ["fmt", "env-filter", "json"] }
-twilight-cache-inmemory = { version = "0.15", features = ["permission-calculator"] }
-twilight-gateway = { version = "0.15", default-features = false, features = ["rustls-webpki-roots"] }
-twilight-http = { version = "0.15", default-features = false, features = ["rustls-webpki-roots"] }
-twilight-model = "0.15"
-twilight-util = { version = "0.15", features = ["builder"] }
-uuid = { version = "1", features = ["serde", "v4"] }
-vesper = { version = "0.11", features = ["bulk"] }
+anyhow = "1.0.91"
+async-trait = "0.1.83"
+axum = { version = "0.7.7", features = ["macros", "multipart"] }
+chrono = "0.4.38"
+hex = "0.4.3"
+once_cell = "1.20.2"
+redis = { version = "0.27.5", features = ["tokio-comp", "connection-manager"] }
+reqwest = { version = "0.12.8", features = ["json"] }
+serde = { version = "1.0.213", features = ["derive"] }
+serde_json = { version = "1.0.132", features = ["preserve_order"] }
+tokio = { version = "1.41.0", features = ["macros", "rt-multi-thread", "time"] }
+sqlx = { version = "0.8.2", features = [ "runtime-tokio-rustls", "postgres", "uuid", "time" ] }
+time = "0.3.36"
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3.18", features = ["fmt", "env-filter", "json"] }
+twilight-cache-inmemory = { version = "0.15.4", features = ["permission-calculator"] }
+twilight-gateway = { version = "0.15.4", default-features = false, features = ["rustls-webpki-roots"] }
+twilight-http = { version = "0.15.4", default-features = false, features = ["rustls-webpki-roots"] }
+twilight-model = "0.15.4"
+twilight-util = { version = "0.15.4", features = ["builder"] }
+uuid = { version = "1.11.0", features = ["serde", "v4"] }
+vesper = { version = "0.13.0", features = ["bulk"] }
 
 [profile.dev.package.sqlx-macros]
 opt-level = 3
