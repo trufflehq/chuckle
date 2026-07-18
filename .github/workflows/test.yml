@@ -24,7 +24,7 @@ jobs:
     runs-on: chortle
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Problem Matchers
         uses: r7kamura/rust-problem-matchers@v1
