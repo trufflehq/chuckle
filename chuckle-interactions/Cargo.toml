@@ -15,7 +15,7 @@ chuckle-util = { workspace = true }
 hex = { workspace = true }
 ms = "0.1.1"
 once_cell = { workspace = true }
-rand = "0.8.5"
+rand = "0.10.2"
 reqwest = { workspace = true }
 serde_json = { workspace = true }
 sqlx = { workspace = true }
